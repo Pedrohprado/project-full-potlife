@@ -1,0 +1,88 @@
+const paintsSherEsmalte = [
+  {
+    code: "110574",
+    micras: 55,
+    ink: "ESMALTE PU LARANJA F9VC",
+    catalisador: "62520132",
+    fabricante: "SHERWIN WILLIANS",
+    potlife: 90,
+    color: "#ef6800",
+  },
+  {
+    code: "124113",
+    micras: 55,
+    ink: "ESMALTE PU PRETO ALTO BRILHO F9RA",
+    catalisador: "62520132",
+    fabricante: "SHERWIN WILLIANS",
+    potlife: 120,
+    color: "#000000",
+  },
+  {
+    code: "80800",
+    micras: 55,
+    ink: "ESMALTE PU AMARELO CONST F9LA",
+    catalisador: "62520132",
+    fabricante: "SHERWIN WILLIANS",
+    potlife: 120,
+    color: "#e5bc08",
+  },
+  {
+    code: "80801",
+    micras: 55,
+    ink: "ESMALTE PU CHARCOAL F9TC",
+    catalisador: "62520132",
+    fabricante: "SHERWIN WILLIANS",
+    potlife: 120,
+    color: "#929696",
+  },
+  {
+    code: "132906",
+    micras: 55,
+    ink: "ESMALTE PU PRETO FOSCO F9T",
+    catalisador: "62520132",
+    fabricante: "SHERWIN WILLIANS",
+    potlife: 120,
+    color: "#111111",
+  },
+  {
+    code: "130968",
+    micras: 55,
+    ink: "ESMALTE PU VERDE F9A",
+    catalisador: "62520132",
+    fabricante: "SHERWIN WILLIANS",
+    potlife: 180,
+    color: "#08ab02",
+  },
+  {
+    code: "147539",
+    micras: 55,
+    ink: "ESMALTE PU PRETO MÉDIO BRILHO F9TR",
+    catalisador: "62520132",
+    fabricante: "SHERWIN WILLIANS",
+    potlife: 180,
+    color: "#111111",
+  },
+  {
+    code: "178886",
+    micras: 55,
+    ink: "ESMALTE PU AMARELO JDM F9H",
+    catalisador: "62520132",
+    fabricante: "SHERWIN WILLIANS",
+    potlife: 120,
+    color: "#e5bc08",
+  },
+];
+
+export const paintsSherPrimer = [
+  {
+    code: "80364",
+    micras: 25,
+    ink: "PRIMER EPOXI BUFF JDM",
+    catalisador: "62540133",
+    fabricante: "SHERWIN WILLIANS",
+    potlife: 240,
+    color: "gray",
+  },
+];
+
+export default paintsSherEsmalte;
