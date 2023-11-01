@@ -1,21 +1,14 @@
-import {
-  Container,
-  ButtonPaints,
-  DescriptionInk,
-  CodeInk,
-  BoxInfo,
-  Color,
-  Micras,
-  PotLife,
-} from "./style";
-
-import axios from "axios";
+import { Container } from "./style";
 
 import paintsSherEsmalte from "../../../../../data/paints";
+import ButtonToCatali from "../../../../../components/ButtonToCatali/ButtonToCatali";
+
+import axios from "axios";
 
 export default function JdSherWinEsmalte() {
   const handleClick = async (potlife) => {
     const formData = new FormData();
+
     formData.append("value", potlife);
 
     const config = {
@@ -29,24 +22,23 @@ export default function JdSherWinEsmalte() {
       console.error(error);
     }
   };
-
   const InkInfo = paintsSherEsmalte.map(
     ({ ink, code, color, micras, potlife }) => (
-      <ButtonPaints
+      <ButtonToCatali
         key={ink.toLowerCase()}
+        ink={ink}
+        code={code}
+        color={color}
+        micras={micras}
+        potlife={potlife}
         onClick={() => handleClick(potlife)}
-      >
-        <DescriptionInk>{ink.toUpperCase()}</DescriptionInk>
-        <CodeInk>
-          código da tinta: <span>{code}</span>
-        </CodeInk>
-        <BoxInfo>
-          <Color color={color}></Color>
-          <Micras>{micras} µm</Micras>
-          <PotLife>{potlife} min</PotLife>
-        </BoxInfo>
-      </ButtonPaints>
+      />
     )
   );
-  return <Container>{InkInfo}</Container>;
+  return (
+    <>
+      <h3>Escolha a tinta Esmalte da JhonDeere</h3>
+      <Container>{InkInfo}</Container>
+    </>
+  );
 }

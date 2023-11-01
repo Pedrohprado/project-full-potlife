@@ -8,6 +8,7 @@ import JdShereWin from "./pages/ClientPage/JdSupplier/JdShereWin";
 import JdSherWinEsmalte from "./pages/ClientPage/JdSupplier/JdShereWin/JdSherWinEsmalte";
 
 import "./App.css";
+import CatalizadorJdSherwinEsmalt from "./pages/CatalizadorJdSherwinEsmalt";
 
 function App() {
   const router = createBrowserRouter([
@@ -31,6 +32,10 @@ function App() {
     {
       path: "/johndeere/sherwin/esmalte",
       element: <JdSherWinEsmalte />,
+    },
+    {
+      path: "/johndeere/catalizador",
+      element: <CatalizadorJdSherwinEsmalt />,
     },
   ]);
   return (
