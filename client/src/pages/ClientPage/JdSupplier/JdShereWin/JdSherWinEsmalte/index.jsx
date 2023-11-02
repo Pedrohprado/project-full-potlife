@@ -22,6 +22,7 @@ export default function JdSherWinEsmalte() {
       console.error(error);
     }
   };
+
   const InkInfo = paintsSherEsmalte.map(
     ({ ink, code, color, micras, potlife }) => (
       <ButtonToCatali
