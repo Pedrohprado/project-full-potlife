@@ -62,7 +62,7 @@ const ConfirmCatalizador = ({
         <Title>Confirme o catalizador</Title>
 
         <ContainerInfo>
-          <Ink>potlife: {potlife}min</Ink>
+          <Ink>{ink}</Ink>
           <Color color={color}></Color>
         </ContainerInfo>
 

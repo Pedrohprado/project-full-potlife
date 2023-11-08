@@ -2,16 +2,15 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 export const Button = styled(Link)`
-  border: 0.1rem solid #707070;
-  background-color: gray;
+  background-color: #dfdfdf;
   border-radius: 3px;
 
-  color: white;
+  color: #101010;
 
   padding: 15px;
 
-  width: 300px;
-  height: 70%;
+  width: 350px;
+  height: 80%;
 
   display: grid;
   grid-template-rows: 1fr 1fr;
@@ -25,12 +24,14 @@ export const Button = styled(Link)`
 
 export const DescriptionInk = styled.h2`
   grid-area: h2;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  width: 100%;
 `;
 
-export const CodeInk = styled.h3`
+export const CodeInk = styled.h2`
   grid-area: h3;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   font-weight: 400;
 
   margin: 10px 0px 40px 0px;

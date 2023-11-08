@@ -22,6 +22,18 @@ export default function ButtonToCatali({
   catalisador,
 }) {
   const [value, setValue] = React.useState(false);
+  const [pot, setPot] = React.useState("");
+
+  React.useEffect(() => {
+    if (potlife === 180) {
+      setPot("3:00");
+    }
+    if (potlife === 120) {
+      setPot("2:00");
+    } else {
+      setPot("1:30");
+    }
+  }, [potlife]);
 
   function handleClick() {
     setValue(!value);
@@ -45,19 +57,17 @@ export default function ButtonToCatali({
     );
   } else {
     return (
-      <>
-        <Button key={ink.toLowerCase()} onClick={handleClick}>
-          <DescriptionInk>{ink.toUpperCase()}</DescriptionInk>
-          <CodeInk>
-            código da tinta: <span>{code}</span>
-          </CodeInk>
-          <BoxInfo>
-            <Color color={color}></Color>
-            <Micras>{micras} µm</Micras>
-            <PotLife>{potlife} min</PotLife>
-          </BoxInfo>
-        </Button>
-      </>
+      <Button key={ink.toLowerCase()} onClick={handleClick}>
+        <DescriptionInk>{ink.toUpperCase()}</DescriptionInk>
+        <CodeInk>
+          código da tinta: <span>{code}</span>
+        </CodeInk>
+        <BoxInfo>
+          <Color color={color}></Color>
+          <Micras>{micras} µm</Micras>
+          <PotLife>{pot} Horas</PotLife>
+        </BoxInfo>
+      </Button>
     );
   }
 }
