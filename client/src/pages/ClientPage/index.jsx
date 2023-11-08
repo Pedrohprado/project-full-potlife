@@ -54,10 +54,7 @@ export default function ClientPage() {
           <AiOutlineArrowLeft size={15} fill={"#f1f1f1"} />
           VOLTAR
         </ButtonReturn>
-        <LogoPedertractor
-          src="../../../../../public/logo.png"
-          alt="logo do grupo pedertractor"
-        />
+        <LogoPedertractor src="/logo.png" alt="logo do grupo pedertractor" />
       </ContainerNav>
       <Text>Selecione o cliente:</Text>
       <ContainerGrid>{clients}</ContainerGrid>
