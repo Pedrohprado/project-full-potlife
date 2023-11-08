@@ -13,10 +13,7 @@ export default function JdShereWin() {
             <AiOutlineArrowLeft size={15} fill={"#f1f1f1"} />
             VOLTAR
           </ButtonReturn>
-          <LogoPedertractor
-            src="../../../../../public/logo.png"
-            alt="logo do grupo pedertractor"
-          />
+          <LogoPedertractor src="/logo.png" alt="logo do grupo pedertractor" />
         </ContainerNav>
 
         <Title>Selecione o tipo de tinta:</Title>
