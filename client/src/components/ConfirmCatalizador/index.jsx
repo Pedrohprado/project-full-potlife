@@ -47,6 +47,7 @@ const ConfirmCatalizador = ({
         console.log(response.data);
       } catch (error) {
         console.error(error);
+        window.alert(`Erro ao enviar: ${error}`);
       }
 
       setValue(false);
