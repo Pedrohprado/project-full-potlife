@@ -1,14 +1,32 @@
-import { Container, Button } from "../JdSupplier/style";
-import { Fotter } from "../style";
+import { Container, Button, ContainerButton, Title } from "../JdSupplier/style";
+import { ButtonReturn } from "../style";
+
+import { AiOutlineArrowLeft } from "react-icons/ai";
+import {
+  ContainerNav,
+  LogoPedertractor,
+} from "./JdShereWin/JdSherWinEsmalte/style";
 
 export default function JdSupplier() {
   return (
-    <>
-      <Container>
-        <Button to={"/johndeere/ppg"}>PPG</Button>
+    <Container>
+      <ContainerNav>
+        <ButtonReturn to={"/clients"}>
+          <AiOutlineArrowLeft size={15} fill={"#f1f1f1"} />
+          VOLTAR
+        </ButtonReturn>
+        <LogoPedertractor
+          src="../../../../../public/logo.png"
+          alt="logo do grupo pedertractor"
+        />
+      </ContainerNav>
+
+      <Title>Selecione o fornecedor:</Title>
+      <ContainerButton>
         <Button to={"/johndeere/sherwin"}>SherWin</Button>
-      </Container>
-      <Fotter>@desenvolvimento</Fotter>
-    </>
+
+        <Button to={"/johndeere/ppg"}>PPG</Button>
+      </ContainerButton>
+    </Container>
   );
 }

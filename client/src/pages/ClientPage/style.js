@@ -6,28 +6,25 @@ export const Container = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  height: 100vh;
-
-  padding: 10px 0px 0px 0px;
-  overflow-y: hidden;
+  justify-content: center;
+  padding: 20px;
 `;
 
 export const ButtonReturn = styled(Link)`
-  font-size: 0%.8;
-  color: #f1f1f1;
+  padding: 17px 50px;
 
-  margin-top: 10px;
-  padding: 10px 20px;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 5px;
 
+  font-size: 1.2rem;
+
+  color: #f1f1f1;
+
   border-radius: 4px;
 
-  background-color: #101010;
-
+  background-color: gray;
   transition: background 0.3s;
 
   &:hover {
@@ -36,8 +33,10 @@ export const ButtonReturn = styled(Link)`
 `;
 
 export const Text = styled.h3`
-  font-size: 1.2rem;
+  margin: 20px 0px 40px 0px;
+
   text-align: center;
+
   color: #101010;
   font-weight: 400;
   font-size: 1.6rem;
@@ -45,7 +44,7 @@ export const Text = styled.h3`
 
 export const ContainerGrid = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
   gap: 2rem;
   text-align: center;
 `;
@@ -67,26 +66,12 @@ export const ButtonClient = styled(Link)`
   transition: 0.3s;
 
   &:hover {
-    border-radius: 10%;
+    box-shadow: 2px 2px 20px ${(props) => props.color || "#7f8c8d"};
   }
 `;
 
 export const TextAux = styled.p`
   font-weight: 700;
   font-size: 1.5rem;
-  text-shadow: 2px 2px #101010;
-`;
-
-export const Fotter = styled.footer`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  width: 100vw;
-
-  padding: 15px 0px 10px 0px;
-
-  background-color: #101010;
-  color: #f1f1f1;
-  font-size: 0.8rem;
+  text-shadow: 2px 2px 10px #101010;
 `;
