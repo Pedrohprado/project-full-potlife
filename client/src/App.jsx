@@ -6,15 +6,19 @@ import ClientPage from "./pages/ClientPage";
 import JdSupplier from "./pages/ClientPage/JdSupplier";
 import JdShereWin from "./pages/ClientPage/JdSupplier/JdShereWin";
 import JdSherWinEsmalte from "./pages/ClientPage/JdSupplier/JdShereWin/JdSherWinEsmalte";
+import ControlOrv from "./components/ControlOrv";
 
 import "./App.css";
-// import ConfirmCatalizador from "./components/ConfirmCatalizador";
 
 function App() {
   const router = createBrowserRouter([
     {
       path: "/",
       element: <HomePage />,
+    },
+    {
+      path: "/pontodeorvalho",
+      element: <ControlOrv />,
     },
     {
       path: "/clients",
@@ -33,10 +37,6 @@ function App() {
       path: "/johndeere/sherwin/esmalte",
       element: <JdSherWinEsmalte />,
     },
-    // {
-    //   path: "/jhondeere/catalizador/confirm",
-    //   element: <ConfirmCatalizador />,
-    // },
   ]);
   return (
     <>

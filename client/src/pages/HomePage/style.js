@@ -6,9 +6,18 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  gap: 40px;
   align-items: center;
   width: 100vw;
   min-height: 100vh;
+`;
+
+export const ContainerButtons = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  width: 100%;
 `;
 
 export const Text = styled.h1`
@@ -20,13 +29,11 @@ export const Button = styled(Link)`
   display: flex;
   align-items: center;
   justify-content: center;
-
+  padding: 20px 50px;
   cursor: pointer;
-  border: none;
   border-radius: 0.2rem;
   background: #7f8c8d;
-  height: 34px;
-  width: 136px;
+
   transition: background 0.3s;
 
   &:hover {
