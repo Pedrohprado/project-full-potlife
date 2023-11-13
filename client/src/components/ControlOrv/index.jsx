@@ -32,7 +32,7 @@ const ControlOrv = () => {
   React.useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.get("http://192.168.0.105/");
+        const response = await axios.get("http://192.168.0.104:443/");
         const temperatura = response.data.temperatura;
         const humidade = response.data.umidade;
 
