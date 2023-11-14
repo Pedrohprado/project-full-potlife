@@ -32,7 +32,9 @@ const ControlOrv = () => {
   React.useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.get("http://192.168.0.100/");
+        const response = await axios.get(
+          "https://api-pintura-comun.onrender.com/condicao"
+        );
         const temperatura = response.data.temperatura;
         const humidade = response.data.umidade;
 
