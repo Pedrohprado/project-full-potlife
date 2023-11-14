@@ -6,8 +6,8 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      "/value": {
-        target: "http://192.168.0.103:80/",
+      "/potlife": {
+        target: "https://api-pintura-comun.onrender.com/",
         changeOrigin: true,
         secure: false,
       },

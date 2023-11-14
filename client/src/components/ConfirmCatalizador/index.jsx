@@ -31,25 +31,28 @@ const ConfirmCatalizador = ({
   }, []);
 
   async function onChange() {
-    const formData = new FormData();
-
-    formData.append("value", potlife);
+    const data = {
+      potlife: potlife,
+    };
     const config = {
       headers: {
-        "content-type": "multipart/form-data",
+        "content-type": "application/json",
       },
     };
 
     if (verific == catalizador) {
       try {
-        const response = await axios.post("/value", formData, config);
+        const response = await axios.post(
+          "/potlife",
+          JSON.stringify(data),
+          config
+        );
         window.alert("código enviado!");
         console.log(response.data);
       } catch (error) {
         console.error(error);
         window.alert(`Erro ao enviar: ${error}`);
       }
-
       setValue(false);
     } else {
       window.alert("catalizador incorreto: erro na mistura");
