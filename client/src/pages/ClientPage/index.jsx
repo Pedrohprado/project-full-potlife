@@ -1,3 +1,4 @@
+import Header from "../../components/Header";
 import {
   ContainerNav,
   LogoPedertractor,
@@ -49,13 +50,7 @@ export default function ClientPage() {
 
   return (
     <Container>
-      <ContainerNav>
-        <ButtonReturn to={"/"}>
-          <AiOutlineArrowLeft size={15} fill={"#f1f1f1"} />
-          VOLTAR
-        </ButtonReturn>
-        <LogoPedertractor src="/logo.png" alt="logo do grupo pedertractor" />
-      </ContainerNav>
+      <Header />
       <Text>Selecione o cliente:</Text>
       <ContainerGrid>{clients}</ContainerGrid>
     </Container>

@@ -18,6 +18,10 @@ export const ContainerButtons = styled.div`
   justify-content: center;
   gap: 40px;
   width: 100%;
+
+  @media screen and (max-width: 500px) {
+    flex-direction: column;
+  }
 `;
 
 export const Text = styled.h1`
@@ -29,7 +33,9 @@ export const Button = styled(Link)`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px 50px;
+
+  width: 180px;
+  padding: 20px 20px;
   cursor: pointer;
   border-radius: 0.2rem;
   background: #7f8c8d;

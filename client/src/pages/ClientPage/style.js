@@ -47,6 +47,14 @@ export const ContainerGrid = styled.div`
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
   text-align: center;
+
+  @media screen and (max-width: 500px) {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
 `;
 
 export const ButtonClient = styled(Link)`
@@ -67,6 +75,10 @@ export const ButtonClient = styled(Link)`
 
   &:hover {
     box-shadow: 2px 2px 20px ${(props) => props.color || "#7f8c8d"};
+  }
+  @media screen and (max-width: 500px) {
+    padding: 40px 0px;
+    width: 100%;
   }
 `;
 
