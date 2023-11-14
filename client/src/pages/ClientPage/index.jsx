@@ -1,18 +1,6 @@
 import Header from "../../components/Header";
-import {
-  ContainerNav,
-  LogoPedertractor,
-} from "./JdSupplier/JdShereWin/JdSherWinEsmalte/style";
-import {
-  Container,
-  ButtonReturn,
-  Text,
-  ContainerGrid,
-  ButtonClient,
-  TextAux,
-} from "./style";
 
-import { AiOutlineArrowLeft } from "react-icons/ai";
+import { Container, Text, ContainerGrid, ButtonClient, TextAux } from "./style";
 
 export default function ClientPage() {
   const clientes = [
