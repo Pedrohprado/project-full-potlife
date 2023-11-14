@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/potlife": {
-        target: "https://api-pintura-comun.onrender.com/",
+        target: "https://api-pintura-comun.onrender.com",
         changeOrigin: true,
         secure: false,
       },
