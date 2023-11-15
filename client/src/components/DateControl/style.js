@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+import { Link } from "react-router-dom";
+
 export const ContainerDay = styled.div`
   width: 95%;
   height: 20%;
@@ -24,4 +26,21 @@ export const TitleData = styled.h3`
   font-size: 0%.9;
   font-weight: 500;
   color: gray;
+`;
+
+export const Return = styled(Link)`
+  border-radius: 50%;
+  padding: 10px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: rotate(180deg);
+  background-color: gray;
+
+  position: fixed;
+  top: 40px;
+  right: 40px;
+
+  cursor: pointer;
 `;

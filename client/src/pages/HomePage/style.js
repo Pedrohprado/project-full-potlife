@@ -20,7 +20,7 @@ export const ContainerButtons = styled.div`
   width: 100%;
 
   @media screen and (max-width: 500px) {
-    flex-direction: column;
+    flex-direction: column-reverse;
   }
 `;
 

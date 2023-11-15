@@ -1,6 +1,8 @@
 import React from "react";
 
-import { ContainerDay, TitleWelcome, TitleData } from "./style";
+import { AiOutlineArrowLeft } from "react-icons/ai";
+
+import { ContainerDay, TitleWelcome, TitleData, Return } from "./style";
 
 const DateControl = () => {
   const [welcome, setWelcome] = React.useState(null);
@@ -32,6 +34,10 @@ const DateControl = () => {
     <ContainerDay>
       <TitleWelcome>{welcome}</TitleWelcome>
       <TitleData>{dayOfWeek}</TitleData>
+
+      <Return to={"/"}>
+        <AiOutlineArrowLeft size={22} />
+      </Return>
     </ContainerDay>
   );
 };
