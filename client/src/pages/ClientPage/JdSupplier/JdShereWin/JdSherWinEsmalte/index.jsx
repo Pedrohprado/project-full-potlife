@@ -1,18 +1,11 @@
-import {
-  Container,
-  ContainerMaster,
-  ContainerNav,
-  LogoPedertractor,
-  Title,
-} from "./style";
+import { Container, ContainerMaster, Title } from "./style";
 
 import paintsSherEsmalte from "../../../../../data/paints";
 import ButtonToCatali from "../../../../../components/ButtonToCatali/ButtonToCatali";
 
 import "react-confirm-alert/src/react-confirm-alert.css";
-import { ButtonReturn } from "../../../style";
 
-import { AiOutlineArrowLeft } from "react-icons/ai";
+import Header from "../../../../../components/Header";
 
 export default function JdSherWinEsmalte() {
   const InkInfo = paintsSherEsmalte.map(
@@ -30,13 +23,7 @@ export default function JdSherWinEsmalte() {
   );
   return (
     <ContainerMaster>
-      <ContainerNav>
-        <ButtonReturn to={"/johndeere/sherwin"}>
-          <AiOutlineArrowLeft size={15} fill={"#f1f1f1"} />
-          VOLTAR
-        </ButtonReturn>
-        <LogoPedertractor src="/logo.png" alt="logo do grupo pedertractor" />
-      </ContainerNav>
+      <Header />
       <Title>Selecione a tinta</Title>
 
       <Container>{InkInfo}</Container>

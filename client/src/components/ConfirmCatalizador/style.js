@@ -28,6 +28,10 @@ export const Squad = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  @media screen and (max-width: 500px) {
+    width: 90%;
+  }
 `;
 
 export const Title = styled.h1`
@@ -44,22 +48,33 @@ export const ContainerInfo = styled.div`
   width: 80%;
 
   margin-bottom: 20px;
+  @media screen and (max-width: 500px) {
+    flex-direction: column;
+  }
 `;
 
 export const Ink = styled.h2`
   font-size: 20px;
   font-weight: bold;
+  @media screen and (max-width: 500px) {
+    text-align: center;
+  }
 `;
 
 export const Color = styled.div`
   width: 30px;
   height: 30px;
   background-color: ${(props) => props.color};
+
+  @media screen and (max-width: 500px) {
+    width: 100px;
+    margin-bottom: 30px;
+  }
 `;
 
 export const Input = styled.input`
-  margin: 0;
   padding: 5px 20px;
+  outline: none;
 `;
 export const ContainerButtons = styled.div`
   margin-top: 30px;

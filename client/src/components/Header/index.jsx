@@ -1,14 +1,10 @@
-import { Headeing, ButtonReturn, LogoPedertractor } from "./style";
-
-import { AiOutlineArrowLeft } from "react-icons/ai";
+import ButtonReturn from "../ButtonReturn";
+import { Headeing, LogoPedertractor } from "./style";
 
 const Header = () => {
   return (
     <Headeing>
-      <ButtonReturn>
-        <AiOutlineArrowLeft />
-        voltar
-      </ButtonReturn>
+      <ButtonReturn />
       <LogoPedertractor src="/logo.png" alt="logo do grupo pedertractor" />
     </Headeing>
   );

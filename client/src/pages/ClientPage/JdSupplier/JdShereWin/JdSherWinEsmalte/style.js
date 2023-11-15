@@ -8,19 +8,6 @@ export const ContainerMaster = styled.main`
   padding: 20px 20px;
 `;
 
-export const ContainerNav = styled.header`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  margin: 0px 0px 10px 0px;
-  padding: 0px 35px;
-`;
-
-export const LogoPedertractor = styled.img`
-  width: 10rem;
-`;
-
 export const Title = styled.h1`
   font-size: 1.7rem;
   margin-bottom: 20px;
@@ -34,4 +21,12 @@ export const Container = styled.div`
   column-gap: 50px;
   align-items: center;
   justify-content: center;
+
+  @media screen and (max-width: 500px) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+  }
 `;
