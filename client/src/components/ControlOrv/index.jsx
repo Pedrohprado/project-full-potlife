@@ -58,15 +58,13 @@ const ControlOrv = () => {
   //NOTES: The Pull Request is here, because, humity and Temperature have
   //a small difenrence between real and sensor cap, i can try set a const regulator
   React.useEffect(() => {
-    let yTUR = Math.log(
-      (hum / 100) * Math.exp((17.368 * temp) / (238.88 + temp))
-    );
-    let Tpo = (238.88 * yTUR) / (17.368 - yTUR); //NOTE: I alter this funciton for next function in side
+    // let yTUR = Math.log(
+    //   (hum / 100) * Math.exp((17.368 * temp) / (238.88 + temp))
+    // );
+
+    // let Tpo = (238.88 * yTUR) / (17.368 - yTUR); //NOTE: I alter this funciton for next function in side
 
     let Teste = (hum / 100) ** 0.125 * (112 + 0.9 * temp) + 0.1 * temp - 112;
-
-    console.log(Tpo);
-    console.log(Teste);
 
     setOrv(parseFloat(Teste.toFixed(2)));
   }, [hum, temp]);
