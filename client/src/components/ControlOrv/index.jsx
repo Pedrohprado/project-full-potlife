@@ -77,7 +77,7 @@ const ControlOrv = () => {
         <DateControl />
         {loading ? (
           <ContainerInfo>
-            <TitleContainer>Overview de hoje</TitleContainer>
+            <TitleContainer>Levantamento de hoje</TitleContainer>
             <TempeHum>
               {temp > 23 ? (
                 <FaTemperatureArrowUp
