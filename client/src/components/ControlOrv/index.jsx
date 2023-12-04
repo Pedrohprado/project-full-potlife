@@ -1,5 +1,5 @@
-import React from "react";
-import axios from "axios";
+import React from 'react';
+import axios from 'axios';
 import {
   Container,
   ContainerInfo,
@@ -12,7 +12,9 @@ import {
   TitleContainer,
   MicroTitle,
   ControlContainer,
-} from "./style";
+  Loading,
+  Loader,
+} from './style';
 
 import {
   FaTemperatureArrowUp,
@@ -20,26 +22,29 @@ import {
   FaDroplet,
   FaPaintRoller,
   FaRegSnowflake,
-} from "react-icons/fa6";
-import DateControl from "../DateControl";
+} from 'react-icons/fa6';
+import DateControl from '../DateControl';
 
 const ControlOrv = () => {
   const [temp, setTemp] = React.useState(null);
   const [hum, setHum] = React.useState(null);
   const [orv, setOrv] = React.useState(null);
   const [tempInk, setTempInk] = React.useState(null);
+  const [loading, setLoading] = React.useState(false);
 
   React.useEffect(() => {
+    setLoading(false);
     async function fetchData() {
       try {
         const response = await axios.get(
-          "https://api-pintura-comun.onrender.com/condicao"
+          'https://api-pintura-comun.onrender.com/condicao'
         );
         const temperatura = response.data.temperatura;
         const humidade = response.data.umidade;
 
         setTemp(temperatura);
         setHum(humidade);
+        setLoading(true);
       } catch (error) {
         console.error(error);
       }
@@ -50,6 +55,8 @@ const ControlOrv = () => {
     return () => clearInterval(interval);
   }, []);
 
+  //NOTES: The Pull Request is here, because, humity and Temperature have
+  //a small difenrence between real and sensor cap, i can try set a const regulator
   React.useEffect(() => {
     let yTUR = Math.log(
       (hum / 100) * Math.exp((17.368 * temp) / (238.88 + temp))
@@ -68,66 +75,72 @@ const ControlOrv = () => {
     <Container>
       <ContainerMaster>
         <DateControl />
-        <ContainerInfo>
-          <TitleContainer>Overview de hoje</TitleContainer>
-          <TempeHum>
-            {temp > 23 ? (
-              <FaTemperatureArrowUp
-                size={25}
-                fill="#E92424"
-                style={{ marginLeft: "50px" }}
+        {loading ? (
+          <ContainerInfo>
+            <TitleContainer>Overview de hoje</TitleContainer>
+            <TempeHum>
+              {temp > 23 ? (
+                <FaTemperatureArrowUp
+                  size={25}
+                  fill='#E92424'
+                  style={{ marginLeft: '50px' }}
+                />
+              ) : (
+                <FaTemperatureArrowDown
+                  size={25}
+                  fill='#225DFE'
+                  style={{ marginLeft: '50px' }}
+                />
+              )}
+              <ControlContainer>
+                <MicroTitle>Temperatura</MicroTitle>
+                <Title>{temp}º C</Title>
+              </ControlContainer>
+            </TempeHum>
+
+            <TempHumHumidade>
+              <FaDroplet
+                size={20}
+                fill='#225DFE'
+                style={{ marginLeft: '50px' }}
               />
-            ) : (
-              <FaTemperatureArrowDown
+
+              <ControlContainer>
+                <MicroTitle>Umidade</MicroTitle>
+                <Title>{hum}%</Title>
+              </ControlContainer>
+            </TempHumHumidade>
+
+            <PontoDeOrvalho>
+              <FaRegSnowflake
                 size={25}
-                fill="#225DFE"
-                style={{ marginLeft: "50px" }}
+                fill='#225DFE'
+                style={{ marginLeft: '50px' }}
               />
-            )}
-            <ControlContainer>
-              <MicroTitle>Temperatura</MicroTitle>
-              <Title>{temp}º C</Title>
-            </ControlContainer>
-          </TempeHum>
+              <ControlContainer>
+                <MicroTitle>Ponto de orvalho</MicroTitle>
+                <Title>{orv}º</Title>
+              </ControlContainer>
+            </PontoDeOrvalho>
 
-          <TempHumHumidade>
-            <FaDroplet
-              size={20}
-              fill="#225DFE"
-              style={{ marginLeft: "50px" }}
-            />
+            <Aplication>
+              <FaPaintRoller
+                size={20}
+                fill='#225DFE'
+                style={{ marginLeft: '50px' }}
+              />
 
-            <ControlContainer>
-              <MicroTitle>Umidade</MicroTitle>
-              <Title>{hum}%</Title>
-            </ControlContainer>
-          </TempHumHumidade>
-
-          <PontoDeOrvalho>
-            <FaRegSnowflake
-              size={25}
-              fill="#225DFE"
-              style={{ marginLeft: "50px" }}
-            />
-            <ControlContainer>
-              <MicroTitle>Ponto de orvalho</MicroTitle>
-              <Title>{orv}º</Title>
-            </ControlContainer>
-          </PontoDeOrvalho>
-
-          <Aplication>
-            <FaPaintRoller
-              size={20}
-              fill="#225DFE"
-              style={{ marginLeft: "50px" }}
-            />
-
-            <ControlContainer>
-              <MicroTitle>Aplicação</MicroTitle>
-              <Title>{tempInk}º</Title>
-            </ControlContainer>
-          </Aplication>
-        </ContainerInfo>
+              <ControlContainer>
+                <MicroTitle>Aplicação</MicroTitle>
+                <Title>{tempInk}º</Title>
+              </ControlContainer>
+            </Aplication>
+          </ContainerInfo>
+        ) : (
+          <Loading>
+            <Loader></Loader>
+          </Loading>
+        )}
       </ContainerMaster>
     </Container>
   );

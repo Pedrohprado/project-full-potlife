@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 export const ContainerDay = styled.div`
   width: 95%;
@@ -43,4 +43,8 @@ export const Return = styled(Link)`
   right: 40px;
 
   cursor: pointer;
+
+  @media screen and (max-width: 768px) {
+    top: 70px;
+  }
 `;
