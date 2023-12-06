@@ -3,38 +3,62 @@ import { GlobalContext } from '../../context/context-form';
 import InputModify from '../../components/InputForm';
 import { useNavigate } from 'react-router-dom';
 
-import { FormLogin, ContainerInputsLogin, ButtonLogin } from './style';
+import {
+  FormLogin,
+  ContainerInputsLogin,
+  ButtonLogin,
+  TitleLogin,
+  SubTitleLogin,
+  Information,
+  LinkForRegister,
+  Loading,
+  Loader,
+  Error,
+} from './style';
 
 const Login = () => {
   const { name, setName, card, setCard, sector, setSector } =
     React.useContext(GlobalContext);
 
+  const [loading, setLoading] = React.useState(null);
+  const [errort, setErrorT] = React.useState(null);
+
+  // const verifElement = React.useRef();
+
   const navigate = useNavigate();
 
   async function verifyLogin() {
-    console.log('teste');
+    setLoading(true);
+    setErrorT(false);
     try {
-      await fetch(`https://api-register-ink.onrender.com/login/`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          nome: name,
-          cartao: card,
-          setor: sector,
-        }),
-      })
+      await fetch(
+        'http://localhost:3000/login/',
+        // `https://api-register-ink.onrender.com/login/`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            nome: name,
+            cartao: card,
+            setor: sector,
+          }),
+        }
+      )
         .then((response) => response.json())
         .then((data) => {
           const info = data;
 
           if (info.length >= 1) {
             console.log('login correto!');
-
+            setLoading(false);
             navigate('/home');
           } else {
             console.log('Nome ou cartão incorretos');
+            setLoading(false);
+            setErrorT(true);
+            // verifElement.current.focus();
           }
         });
     } catch (erro) {
@@ -49,6 +73,8 @@ const Login = () => {
 
   return (
     <FormLogin onSubmit={handleSubmit}>
+      <TitleLogin>Login</TitleLogin>
+      <SubTitleLogin>Preencha os campos abaixo</SubTitleLogin>
       <ContainerInputsLogin>
         <InputModify
           value={name}
@@ -56,6 +82,7 @@ const Login = () => {
           type={'text'}
           label={'Nome'}
           req={'required'}
+          error={errort}
         />
         <InputModify
           value={card}
@@ -73,7 +100,18 @@ const Login = () => {
         />
       </ContainerInputsLogin>
 
+      {errort ? <Error>Nome e/ou cartão incorretos</Error> : null}
+
       <ButtonLogin>ENTRAR</ButtonLogin>
+      <Information>
+        Não tem cadastro?{' '}
+        <LinkForRegister to={'/createdacount'}>Registre-se</LinkForRegister>
+      </Information>
+      {loading ? (
+        <Loading>
+          <Loader></Loader>
+        </Loading>
+      ) : null}
     </FormLogin>
   );
 };

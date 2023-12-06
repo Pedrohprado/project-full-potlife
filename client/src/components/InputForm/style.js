@@ -32,4 +32,10 @@ export const InputMain = styled.input`
   background-color: #f0f0f0;
 
   cursor: pointer;
+
+  &:focus {
+    outline: none;
+    border: 1px solid red;
+    box-shadow: 0px 0px 2px red;
+  }
 `;

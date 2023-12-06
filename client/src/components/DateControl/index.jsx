@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 
-import { AiOutlineArrowLeft } from "react-icons/ai";
+import { AiOutlineArrowLeft } from 'react-icons/ai';
 
-import { ContainerDay, TitleWelcome, TitleData, Return } from "./style";
+import { ContainerDay, TitleWelcome, TitleData, Return } from './style';
 
 const DateControl = () => {
   const [welcome, setWelcome] = React.useState(null);
@@ -10,16 +10,16 @@ const DateControl = () => {
 
   function updateDate() {
     const date = new Date();
-    const wle = date.toLocaleString("pt-BR", { dayPeriod: "long" });
+    const wle = date.toLocaleString('pt-BR', { dayPeriod: 'long' });
 
-    if (wle == "da tarde") {
-      setWelcome("Boa tarde");
-    } else if (wle == "da manha" || wle == "da manhã") {
-      setWelcome("Bom dia");
+    if (wle == 'da tarde') {
+      setWelcome('Boa tarde');
+    } else if (wle == 'da manha' || wle == 'da manhã') {
+      setWelcome('Bom dia');
     } else {
-      setWelcome("Boa noite");
+      setWelcome('Boa noite');
     }
-    setDayOfWeek(date.toLocaleString("pt-BR", { dateStyle: "full" }));
+    setDayOfWeek(date.toLocaleString('pt-BR', { dateStyle: 'full' }));
   }
 
   React.useEffect(() => {
@@ -35,7 +35,7 @@ const DateControl = () => {
       <TitleWelcome>{welcome}</TitleWelcome>
       <TitleData>{dayOfWeek}</TitleData>
 
-      <Return to={"/"}>
+      <Return to={'/home'}>
         <AiOutlineArrowLeft size={22} />
       </Return>
     </ContainerDay>

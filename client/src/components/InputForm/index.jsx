@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+import React from 'react';
 import { InputLabel, InputMain } from './style';
 import { FaRegAddressCard, FaPerson, FaIndustry } from 'react-icons/fa6';
 const InputModify = ({
@@ -11,6 +12,12 @@ const InputModify = ({
   validateCard,
   req,
 }) => {
+  const verifElement = React.useRef();
+
+  if (error) {
+    verifElement.current.focus();
+  }
+
   function handleChange({ target }) {
     if (error) validateCard(target.value);
     setValue(target.value);
@@ -28,6 +35,7 @@ const InputModify = ({
 
       {label}
       <InputMain
+        ref={verifElement}
         required={req ? true : false}
         onBlur={handleBlur}
         type={type}
