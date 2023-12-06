@@ -38,8 +38,8 @@ const Form = () => {
 
   async function createNewUser() {
     const response = await fetch(
-      // 'https://api-register-ink.onrender.com/funcionarios/',
-      'http://localhost:3000/funcionarios',
+      'https://api-register-ink.onrender.com/funcionarios/',
+      // 'http://localhost:3000/funcionarios',
       {
         method: 'POST',
         headers: {
@@ -58,8 +58,8 @@ const Form = () => {
   const checkNewUser = async () => {
     try {
       await fetch(
-        // `https://api-register-ink.onrender.com/funcionarios/${card}`,
-        `http://localhost:3000/${card}`,
+        `https://api-register-ink.onrender.com/funcionarios/${card}`,
+        // `http://localhost:3000/${card}`,
         {
           headers: {
             'Content-Type': 'application/json',

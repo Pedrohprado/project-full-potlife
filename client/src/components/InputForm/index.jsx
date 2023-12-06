@@ -11,12 +11,25 @@ const InputModify = ({
   error,
   validateCard,
   req,
+  errort,
+  setErrorT,
 }) => {
   const verifElement = React.useRef();
 
-  if (error) {
+  if (errort) {
     verifElement.current.focus();
   }
+
+  React.useEffect(() => {
+    let timer = null;
+    if (errort) {
+      timer = setTimeout(() => {
+        setErrorT();
+        console.log('testando');
+      }, 3000);
+    }
+    return () => clearTimeout(timer);
+  }, [errort, setErrorT]);
 
   function handleChange({ target }) {
     if (error) validateCard(target.value);
@@ -35,6 +48,7 @@ const InputModify = ({
 
       {label}
       <InputMain
+        color={errort ? 'red' : null}
         ref={verifElement}
         required={req ? true : false}
         onBlur={handleBlur}

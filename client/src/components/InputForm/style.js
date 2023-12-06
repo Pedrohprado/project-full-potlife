@@ -35,7 +35,6 @@ export const InputMain = styled.input`
 
   &:focus {
     outline: none;
-    border: 1px solid red;
-    box-shadow: 0px 0px 2px red;
+    border: ${(props) => (props.color === 'red' ? '1px solid red' : null)};
   }
 `;

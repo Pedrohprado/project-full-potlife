@@ -23,8 +23,6 @@ const Login = () => {
   const [loading, setLoading] = React.useState(null);
   const [errort, setErrorT] = React.useState(null);
 
-  // const verifElement = React.useRef();
-
   const navigate = useNavigate();
 
   async function verifyLogin() {
@@ -32,8 +30,8 @@ const Login = () => {
     setErrorT(false);
     try {
       await fetch(
-        'http://localhost:3000/login/',
-        // `https://api-register-ink.onrender.com/login/`,
+        // 'http://localhost:3000/login/',
+        `https://api-register-ink.onrender.com/login/`,
         {
           method: 'POST',
           headers: {
@@ -58,7 +56,6 @@ const Login = () => {
             console.log('Nome ou cartão incorretos');
             setLoading(false);
             setErrorT(true);
-            // verifElement.current.focus();
           }
         });
     } catch (erro) {
@@ -82,7 +79,8 @@ const Login = () => {
           type={'text'}
           label={'Nome'}
           req={'required'}
-          error={errort}
+          errort={errort}
+          setErrorT={() => setErrorT(false)}
         />
         <InputModify
           value={card}
