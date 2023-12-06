@@ -30,11 +30,10 @@ const Form = () => {
       timer = setTimeout(() => {
         setSucess(false);
         setRegister(false);
-        navigate('/home');
       }, 5000);
     }
     return () => clearTimeout(timer);
-  }, [sucess, register, navigate]);
+  }, [sucess, register]);
 
   async function createNewUser() {
     const response = await fetch(
@@ -53,13 +52,17 @@ const Form = () => {
       }
     );
     setSucess(response.ok);
+    if (response.ok) {
+      navigate('/home');
+    }
   }
 
   const checkNewUser = async () => {
     try {
+      console.log('test');
       await fetch(
+        // `http://localhost:3000/funcionarios/${card}`,
         `https://api-register-ink.onrender.com/funcionarios/${card}`,
-        // `http://localhost:3000/${card}`,
         {
           headers: {
             'Content-Type': 'application/json',
