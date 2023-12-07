@@ -12,10 +12,12 @@ import {
   AlertForm,
   LinkForLogin,
   Information,
+  Loading,
+  Loader,
 } from './style';
 
 const Form = () => {
-  const { name, setName, card, setCard, sector, setSector } =
+  const { name, setName, card, setCard, sector, setSector, setLogin } =
     React.useContext(GlobalContext);
 
   const navigate = useNavigate();
@@ -23,6 +25,7 @@ const Form = () => {
   const [sucess, setSucess] = React.useState(false);
   const [error, setError] = React.useState(null);
   const [register, setRegister] = React.useState(null);
+  const [loading, setLoading] = React.useState(null);
 
   React.useEffect(() => {
     let timer = null;
@@ -53,13 +56,19 @@ const Form = () => {
     );
     setSucess(response.ok);
     if (response.ok) {
+      setLoading(false);
+      setLogin(true);
       navigate('/home');
+    } else {
+      setLoading(false);
+      setLogin(false);
     }
   }
 
   const checkNewUser = async () => {
+    setLoading(true);
+
     try {
-      console.log('test');
       await fetch(
         // `http://localhost:3000/funcionarios/${card}`,
         `https://api-register-ink.onrender.com/funcionarios/${card}`,
@@ -147,6 +156,11 @@ const Form = () => {
       <Information>
         Já tem cadastro? <LinkForLogin to={'/login'}>Clique aqui</LinkForLogin>
       </Information>
+      {loading ? (
+        <Loading>
+          <Loader></Loader>
+        </Loading>
+      ) : null}
     </FormContainer>
   );
 };

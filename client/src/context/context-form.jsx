@@ -7,6 +7,7 @@ export const GlobalForm = ({ children }) => {
   const [name, setName] = React.useState('');
   const [card, setCard] = React.useState('');
   const [sector, setSector] = React.useState('');
+  const [login, setLogin] = React.useState(false);
 
   return (
     <GlobalContext.Provider
@@ -17,6 +18,8 @@ export const GlobalForm = ({ children }) => {
         setCard,
         sector,
         setSector,
+        login,
+        setLogin,
       }}
     >
       {children}

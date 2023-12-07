@@ -13,6 +13,7 @@ import Form from './pages/Form';
 
 import './App.css';
 import { GlobalForm } from './context/context-form';
+import ProtectedRoute from './protect/ProtectedRoute';
 
 function App() {
   const router = createBrowserRouter([
@@ -30,7 +31,11 @@ function App() {
     },
     {
       path: '/home',
-      element: <HomePage />,
+      element: (
+        <ProtectedRoute>
+          <HomePage />
+        </ProtectedRoute>
+      ),
     },
     {
       path: '/pontodeorvalho',

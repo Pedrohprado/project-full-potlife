@@ -17,7 +17,7 @@ import {
 } from './style';
 
 const Login = () => {
-  const { name, setName, card, setCard, sector, setSector } =
+  const { name, setName, card, setCard, sector, setSector, setLogin } =
     React.useContext(GlobalContext);
 
   const [loading, setLoading] = React.useState(null);
@@ -51,9 +51,13 @@ const Login = () => {
           if (info.length >= 1) {
             console.log('login correto!');
             setLoading(false);
+            //NOTES: I try created a protectRuter for page /home,
+            //problabily, i set setLogin(true) here.
+            setLogin(true);
             navigate('/home');
           } else {
             console.log('Nome ou cartão incorretos');
+            setLogin(false);
             setLoading(false);
             setErrorT(true);
           }

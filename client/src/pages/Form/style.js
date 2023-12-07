@@ -89,3 +89,38 @@ export const LinkForLogin = styled(Link)`
   text-decoration: none;
   color: #225dfe;
 `;
+
+export const Loading = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: #fbfbfb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const Loader = styled.div`
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid #225dfe;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 2s linear infinite;
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    border: 8px solid #f3f3f3;
+    border-top: 8px solid #225dfe;
+  }
+`;
