@@ -40,7 +40,7 @@ const Form = () => {
 
   async function createNewUser() {
     const response = await fetch(
-      'https://api-register-ink.onrender.com/funcionarios/',
+      `${import.meta.env.VITE_BASE_URL}funcionarios/`,
       // 'http://localhost:3000/funcionarios',
       {
         method: 'POST',
@@ -71,7 +71,7 @@ const Form = () => {
     try {
       await fetch(
         // `http://localhost:3000/funcionarios/${card}`,
-        `https://api-register-ink.onrender.com/funcionarios/${card}`,
+        `${import.meta.env.VITE_BASE_URL}funcionarios/${card}`,
         {
           headers: {
             'Content-Type': 'application/json',

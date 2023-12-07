@@ -37,9 +37,7 @@ const ControlOrv = () => {
     setLoading(false);
     async function fetchData() {
       try {
-        const response = await axios.get(
-          'https://api-pintura-comun.onrender.com/condicao'
-        );
+        const response = await axios.get(import.meta.env.VITE_BASE_URL_ORV);
         const temperatura = response.data.temperatura;
         const humidade = response.data.umidade;
 

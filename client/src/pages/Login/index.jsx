@@ -31,7 +31,7 @@ const Login = () => {
     try {
       await fetch(
         // 'http://localhost:3000/login/',
-        `https://api-register-ink.onrender.com/login/`,
+        `${import.meta.env.VITE_BASE_URL}login/`,
         {
           method: 'POST',
           headers: {
