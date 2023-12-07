@@ -85,6 +85,7 @@ const Form = () => {
           //but i could return True or False for exist card in the database or not, and continue validation from then
           if (equili.length >= 1) {
             setRegister(true);
+            setLoading(false);
           } else {
             createNewUser();
             setRegister(false);
