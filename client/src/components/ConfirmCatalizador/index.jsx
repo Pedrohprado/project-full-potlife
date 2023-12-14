@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
-import React from "react";
-
-import axios from "axios";
+import React from 'react';
+import axios from 'axios';
 
 import {
   Container,
@@ -13,7 +12,7 @@ import {
   Input,
   ContainerButtons,
   Button,
-} from "./style";
+} from './style';
 
 const ConfirmCatalizador = ({
   ink,
@@ -23,7 +22,7 @@ const ConfirmCatalizador = ({
   onClick,
   setValue,
 }) => {
-  const [verific, setVerific] = React.useState("");
+  const [verific, setVerific] = React.useState('');
   const inputFocus = React.useRef();
 
   React.useEffect(() => {
@@ -36,27 +35,29 @@ const ConfirmCatalizador = ({
     };
     const config = {
       headers: {
-        "content-type": "application/json",
+        'content-type': 'application/json',
       },
     };
 
     if (verific == catalizador) {
       try {
         const response = await axios.post(
-          "https://api-pintura-comun.onrender.com/potlife",
+          'http://localhost:3333/potlife',
+          // "https://api-pintura-comun.onrender.com/potlife",
           JSON.stringify(data),
           config
         );
-        window.alert("código enviado!");
+        window.alert('código enviado!');
         console.log(response.data);
       } catch (error) {
         console.error(error);
         window.alert(`Erro ao enviar: ${error}`);
       }
+      // navigate('/');
       setValue(false);
     } else {
-      window.alert("catalizador incorreto: erro na mistura");
-      setVerific("");
+      window.alert('catalizador incorreto: erro na mistura');
+      setVerific('');
       inputFocus.current.focus();
     }
   }
@@ -72,13 +73,13 @@ const ConfirmCatalizador = ({
 
         <Input
           ref={inputFocus}
-          type="number"
+          type='number'
           value={verific}
           onChange={(e) => setVerific(e.target.value)}
         />
         <ContainerButtons>
           <Button onClick={onClick}>VOLTAR</Button>
-          <Button color="green" onClick={onChange}>
+          <Button color='green' onClick={onChange}>
             ENVIAR
           </Button>
         </ContainerButtons>

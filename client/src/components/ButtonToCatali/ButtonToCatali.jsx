@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React from "react";
+import React from 'react';
 
 import {
   Button,
@@ -9,9 +9,9 @@ import {
   Color,
   Micras,
   PotLife,
-} from "./style";
+} from './style';
 
-import ConfirmCatalizador from "../ConfirmCatalizador";
+import ConfirmCatalizador from '../ConfirmCatalizador';
 
 export default function ButtonToCatali({
   ink,
@@ -22,16 +22,16 @@ export default function ButtonToCatali({
   catalisador,
 }) {
   const [value, setValue] = React.useState(false);
-  const [pot, setPot] = React.useState("");
+  const [pot, setPot] = React.useState('');
 
   React.useEffect(() => {
     if (potlife === 180) {
-      setPot("3:00");
+      setPot('3:00');
     }
     if (potlife === 120) {
-      setPot("2:00");
+      setPot('2:00');
     } else {
-      setPot("1:30");
+      setPot('1:30');
     }
   }, [potlife]);
 

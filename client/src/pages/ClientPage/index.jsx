@@ -1,35 +1,15 @@
-import Header from "../../components/Header";
+import Header from '../../components/Header';
 
-import { Container, Text, ContainerGrid, ButtonClient, TextAux } from "./style";
+import { Container, Text, ContainerGrid, ButtonClient, TextAux } from './style';
+import clients from '../../data/clients';
 
 export default function ClientPage() {
-  const clientes = [
-    {
-      name: "JOHN DEERE",
-      color: "#3f8b1a",
-    },
-    {
-      name: "CATERPILLAR",
-      color: "#ebc334",
-    },
-    {
-      name: "CNH",
-      color: "#853434",
-    },
-    {
-      name: "VOLVO",
-      color: "#727272",
-    },
-    {
-      name: "JACTO",
-      color: "#cf5e0e",
-    },
-  ];
-
-  const clients = clientes.map(({ name, color }) => (
+  const cliente = clients.map(({ name, color }) => (
     <ButtonClient
       key={name.toLowerCase()}
-      to={`/${name.toLowerCase().replace(" ", "")}`}
+      //NOTES:I need modify route, for dinamic link
+      //i think use useParams-()
+      to={`/clients/${name.toLowerCase().replace(' ', '')}`}
       color={color}
     >
       <TextAux>{name}</TextAux>
@@ -40,7 +20,7 @@ export default function ClientPage() {
     <Container>
       <Header />
       <Text>Selecione o cliente:</Text>
-      <ContainerGrid>{clients}</ContainerGrid>
+      <ContainerGrid>{cliente}</ContainerGrid>
     </Container>
   );
 }

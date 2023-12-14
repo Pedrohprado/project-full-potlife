@@ -1,5 +1,7 @@
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Normalize } from 'styled-normalize';
+import { GlobalForm } from './context/context-form';
+import './App.css';
 
 import HomePage from './pages/HomePage';
 import ClientPage from './pages/ClientPage';
@@ -11,60 +13,37 @@ import MoveLogin from './pages/MoveLogin';
 import Login from './pages/Login';
 import Form from './pages/Form';
 
-import './App.css';
-import { GlobalForm } from './context/context-form';
 import ProtectedRoute from './protect/ProtectedRoute';
 
 function App() {
-  const router = createBrowserRouter([
-    {
-      path: '/',
-      element: <MoveLogin />,
-    },
-    {
-      path: '/login',
-      element: <Login />,
-    },
-    {
-      path: '/createdacount',
-      element: <Form />,
-    },
-    {
-      path: '/home',
-      element: (
-        <ProtectedRoute>
-          <HomePage />
-        </ProtectedRoute>
-      ),
-    },
-    {
-      path: '/pontodeorvalho',
-      element: <ControlOrv />,
-    },
-    {
-      path: '/clients',
-      element: <ClientPage />,
-    },
-
-    {
-      path: '/johndeere',
-      element: <JdSupplier />,
-    },
-    {
-      path: '/johndeere/sherwin',
-      element: <JdShereWin />,
-    },
-    {
-      path: '/johndeere/sherwin/esmalte',
-      element: <JdSherWinEsmalte />,
-    },
-  ]);
   return (
     <>
-      <GlobalForm>
-        <RouterProvider router={router} />
-        <Normalize />
-      </GlobalForm>
+      <BrowserRouter>
+        <GlobalForm>
+          <Routes>
+            <Route path='/' element={<MoveLogin />} />
+            <Route path='login' element={<Login />} />
+            <Route path='createdacount' element={<Form />} />
+            <Route
+              path='home'
+              element={
+                <ProtectedRoute>
+                  <HomePage />
+                </ProtectedRoute>
+              }
+            />
+            <Route path='pontodeorvalho' element={<ControlOrv />} />
+            <Route path='clients' element={<ClientPage />} />
+            <Route path='clients/:id' element={<JdSupplier />} />
+            <Route path='clients/:id/:for' element={<JdShereWin />} />
+            <Route
+              path='clients/:id/:for/:type'
+              element={<JdSherWinEsmalte />}
+            />
+          </Routes>
+          <Normalize />
+        </GlobalForm>
+      </BrowserRouter>
     </>
   );
 }

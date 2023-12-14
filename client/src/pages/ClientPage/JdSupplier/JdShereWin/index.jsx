@@ -1,15 +1,21 @@
-import Header from "../../../../components/Header";
-import { Container, Button, ContainerButton, Title } from "./style";
+import { useParams } from 'react-router-dom';
+import Header from '../../../../components/Header';
+import { Container, Button, ContainerButton, Title } from './style';
 
 export default function JdShereWin() {
+  const parans = useParams();
   return (
     <>
       <Container>
         <Header />
         <Title>Selecione o tipo de tinta:</Title>
         <ContainerButton>
-          <Button to={"/johndeere/sherwin/esmalte"}>ESMALTE</Button>
-          <Button to={"/johndeere/sherwin/prime"}>PRIME</Button>
+          <Button to={`/clients/${parans.id}/${parans.for}/esmalte`}>
+            ESMALTE
+          </Button>
+          <Button to={`/clients/${parans.id}/${parans.for}/primer`}>
+            PRIME
+          </Button>
         </ContainerButton>
       </Container>
     </>
