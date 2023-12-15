@@ -19,6 +19,10 @@ const clients = [
     name: 'JACTO',
     color: '#cf5e0e',
   },
+  {
+    name: 'CRUCIANELLI',
+    color: '#E42028',
+  },
 ];
 
 export default clients;

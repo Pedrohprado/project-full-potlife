@@ -324,6 +324,21 @@ export const inkJacto = [
         ],
       },
     ],
+    renner: [
+      {
+        esmalte: [
+          {
+            code: 'RH01819146',
+            micras: 75,
+            ink: 'ESMALTE PU ACRILICO MP CINZA ESCURO',
+            catalisador: 'RHC401',
+            fabricante: 'RENNER',
+            potlife: 240,
+            color: 'gray',
+          },
+        ],
+      },
+    ],
   },
 ];
 
@@ -479,6 +494,26 @@ export const inkVolvo = [
             fabricante: 'SHERWIN WILLIANS',
             potlife: 240,
             color: '#e8d3b6',
+          },
+        ],
+      },
+    ],
+  },
+];
+
+export const inkCrucianelli = [
+  {
+    sherwin: [
+      {
+        esmalte: [
+          {
+            code: '64221383',
+            micras: 78,
+            ink: 'DURASPAR IP PU HS ROJO CRUCIANELLI',
+            catalisador: '6158008',
+            fabricante: 'SHERWIN WILLIANS',
+            potlife: 180,
+            color: 'red',
           },
         ],
       },
