@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import axios from 'axios';
+import { GlobalContext } from '../../context/context-form';
 
 import {
   Container,
@@ -13,6 +14,7 @@ import {
   ContainerButtons,
   Button,
 } from './style';
+import { useNavigate } from 'react-router-dom';
 
 const ConfirmCatalizador = ({
   ink,
@@ -24,6 +26,9 @@ const ConfirmCatalizador = ({
 }) => {
   const [verific, setVerific] = React.useState('');
   const inputFocus = React.useRef();
+  const { setPotlifeTest, setHours, setMinutes, setSeconds } =
+    React.useContext(GlobalContext);
+  const navigate = useNavigate();
 
   React.useEffect(() => {
     inputFocus.current.focus();
@@ -49,12 +54,18 @@ const ConfirmCatalizador = ({
         );
         window.alert('código enviado!');
         console.log(response.data);
+        setPotlifeTest(potlife);
       } catch (error) {
         console.error(error);
         window.alert(`Erro ao enviar: ${error}`);
       }
-      // navigate('/');
+      if (potlife === 120) {
+        setHours(2);
+        setMinutes(0);
+        setSeconds(0);
+      }
       setValue(false);
+      navigate('/cron');
     } else {
       window.alert('catalizador incorreto: erro na mistura');
       setVerific('');
