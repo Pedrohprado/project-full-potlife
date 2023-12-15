@@ -516,6 +516,17 @@ export const inkCrucianelli = [
             color: 'red',
           },
         ],
+        primer: [
+          {
+            code: '64140772',
+            micras: 25,
+            ink: 'PRIMER EPÓXI AMARELO JACTO',
+            catalisador: '64140772',
+            fabricante: 'SHERWIN WILLIANS',
+            potlife: 240,
+            color: 'yellow',
+          },
+        ],
       },
     ],
   },

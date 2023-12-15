@@ -73,8 +73,8 @@ const ConfirmCatalizador = ({
 
         <Input
           ref={inputFocus}
-          type='number'
-          value={verific}
+          type='text'
+          value={verific.toLocaleUpperCase()}
           onChange={(e) => setVerific(e.target.value)}
         />
         <ContainerButtons>

@@ -7,6 +7,7 @@ import {
   inkJacto,
   inkCnh,
   inkVolvo,
+  inkCrucianelli,
 } from '../../data/paints';
 import ButtonToCatali from '../../components/ButtonToCatali/ButtonToCatali';
 
@@ -76,6 +77,14 @@ export default function CliientInks() {
           setTest('volvosherwinprimer');
           break;
 
+        case 'crucianellisherwinesmalte':
+          setTest('crucianellisherwinesmalte');
+          break;
+
+        case 'crucianellisherwinprimer':
+          setTest('crucianellisherwinprimer');
+          break;
+
         default:
           setTest(null);
           break;
@@ -84,6 +93,34 @@ export default function CliientInks() {
 
     seeInk(parans.id, parans.for, parans.type);
   }, [parans.id, parans.for, parans.type]);
+
+  const inkCrucianelliPrimer = inkCrucianelli[0].sherwin[0].primer.map(
+    ({ ink, code, color, micras, potlife, catalisador }, i) => (
+      <ButtonToCatali
+        key={i}
+        ink={ink}
+        code={code}
+        color={color}
+        micras={micras}
+        potlife={potlife}
+        catalisador={catalisador}
+      />
+    )
+  );
+
+  const inkCrucianelliEsmalt = inkCrucianelli[0].sherwin[0].esmalte.map(
+    ({ ink, code, color, micras, potlife, catalisador }, i) => (
+      <ButtonToCatali
+        key={i}
+        ink={ink}
+        code={code}
+        color={color}
+        micras={micras}
+        potlife={potlife}
+        catalisador={catalisador}
+      />
+    )
+  );
 
   const inkJdSherEsmalt = inkJohnDeere[0].sherwin[0].esmalte.map(
     ({ ink, code, color, micras, potlife, catalisador }, i) => (
@@ -297,8 +334,12 @@ export default function CliientInks() {
         <Container>{inkVolvoSherEsmalt}</Container>
       ) : test === 'volvosherwinprimer' ? (
         <Container>{inkVolvoSherPrimer}</Container>
+      ) : test === 'crucianellisherwinesmalte' ? (
+        <Container>{inkCrucianelliEsmalt}</Container>
+      ) : test === 'crucianellisherwinprimer' ? (
+        <Container>{inkCrucianelliPrimer}</Container>
       ) : (
-        ' sem tinta aqui :('
+        'sem tinta :('
       )}
     </ContainerMaster>
   );
