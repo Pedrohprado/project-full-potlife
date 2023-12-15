@@ -1,9 +1,9 @@
-import { Container, Button, ContainerButton, Title } from '../JdSupplier/style';
+import { Container, Button, ContainerButton, Title } from './style';
 
-import Header from '../../../components/Header';
+import Header from '../../components/Header';
 import { useParams } from 'react-router-dom';
 
-export default function JdSupplier() {
+export default function SelectForn() {
   const parans = useParams();
   return (
     <Container>

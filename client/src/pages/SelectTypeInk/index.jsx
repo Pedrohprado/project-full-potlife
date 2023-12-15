@@ -1,8 +1,8 @@
 import { useParams } from 'react-router-dom';
-import Header from '../../../../components/Header';
+import Header from '../../components/Header';
 import { Container, Button, ContainerButton, Title } from './style';
 
-export default function JdShereWin() {
+export default function SelectTypeInk() {
   const parans = useParams();
   return (
     <>

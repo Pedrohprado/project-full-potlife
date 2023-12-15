@@ -5,15 +5,15 @@ import {
   inkJohnDeere,
   inkCaterpillar,
   inkJacto,
-} from '../../../../../data/paints';
-import ButtonToCatali from '../../../../../components/ButtonToCatali/ButtonToCatali';
+  inkCnh,
+  inkVolvo,
+} from '../../data/paints';
+import ButtonToCatali from '../../components/ButtonToCatali/ButtonToCatali';
 
-import 'react-confirm-alert/src/react-confirm-alert.css';
-
-import Header from '../../../../../components/Header';
+import Header from '../../components/Header';
 import { useParams } from 'react-router-dom';
 
-export default function JdSherWinEsmalte() {
+export default function CliientInks() {
   const parans = useParams();
 
   const [test, setTest] = React.useState(null);
@@ -56,6 +56,26 @@ export default function JdSherWinEsmalte() {
           setTest('jactosherwinesmalte');
           break;
 
+        case 'jactosherwinprimer':
+          setTest('jactosherwinprimer');
+          break;
+
+        case 'cnhsherwinesmalte':
+          setTest('cnhsherwinesmalte');
+          break;
+
+        case 'cnhppgesmalte':
+          setTest('cnhppgesmalte');
+          break;
+
+        case 'volvosherwinesmalte':
+          setTest('volvosherwinesmalte');
+          break;
+
+        case 'volvosherwinprimer':
+          setTest('volvosherwinprimer');
+          break;
+
         default:
           setTest(null);
           break;
@@ -94,6 +114,62 @@ export default function JdSherWinEsmalte() {
   );
 
   const inkJdPpgEsmalt = inkJohnDeere[0].ppg[0].esmalte.map(
+    ({ ink, code, color, micras, potlife, catalisador }, i) => (
+      <ButtonToCatali
+        key={i}
+        ink={ink}
+        code={code}
+        color={color}
+        micras={micras}
+        potlife={potlife}
+        catalisador={catalisador}
+      />
+    )
+  );
+
+  const inkCnhSherEsmalt = inkCnh[0].sherwin[0].esmalte.map(
+    ({ ink, code, color, micras, potlife, catalisador }, i) => (
+      <ButtonToCatali
+        key={i}
+        ink={ink}
+        code={code}
+        color={color}
+        micras={micras}
+        potlife={potlife}
+        catalisador={catalisador}
+      />
+    )
+  );
+
+  const inkCnhPpgEsmalt = inkCnh[0].ppg[0].esmalte.map(
+    ({ ink, code, color, micras, potlife, catalisador }, i) => (
+      <ButtonToCatali
+        key={i}
+        ink={ink}
+        code={code}
+        color={color}
+        micras={micras}
+        potlife={potlife}
+        catalisador={catalisador}
+      />
+    )
+  );
+
+  const inkVolvoSherEsmalt = inkVolvo[0].sherwin[0].esmalte.map(
+    ({ ink, code, color, micras, potlife, catalisador }, i) => (
+      <ButtonToCatali
+        key={i}
+        ink={ink}
+        code={code}
+        color={color}
+        micras={micras}
+        potlife={potlife}
+        catalisador={catalisador}
+      />
+    )
+  );
+
+  const inkVolvoSherPrimer = inkVolvo[0].sherwin[0].primer.map(
     ({ ink, code, color, micras, potlife, catalisador }, i) => (
       <ButtonToCatali
         key={i}
@@ -177,6 +253,20 @@ export default function JdSherWinEsmalte() {
     )
   );
 
+  const inkJactoSherPrimer = inkJacto[0].sherwin[0].primer.map(
+    ({ ink, code, color, micras, potlife, catalisador }, i) => (
+      <ButtonToCatali
+        key={i}
+        ink={ink}
+        code={code}
+        color={color}
+        micras={micras}
+        potlife={potlife}
+        catalisador={catalisador}
+      />
+    )
+  );
+
   return (
     <ContainerMaster>
       <Header />
@@ -187,8 +277,6 @@ export default function JdSherWinEsmalte() {
         <Container>{inkJdSherPrimer}</Container>
       ) : test === 'johndeereppgesmalte' ? (
         <Container>{inkJdPpgEsmalt}</Container>
-      ) : test === 'johndeereppgprimer' ? (
-        'Sem tinta aqui!'
       ) : test === 'caterpillarsherwinesmalte' ? (
         <Container>{inkCatSherEsmalt}</Container>
       ) : test === 'caterpillarsherwinprimer' ? (
@@ -199,8 +287,18 @@ export default function JdSherWinEsmalte() {
         <Container>{inkCatPpgPrimer}</Container>
       ) : test === 'jactosherwinesmalte' ? (
         <Container>{inkJactoSherEsmalt}</Container>
+      ) : test === 'jactosherwinprimer' ? (
+        <Container>{inkJactoSherPrimer}</Container>
+      ) : test === 'cnhsherwinesmalte' ? (
+        <Container>{inkCnhSherEsmalt}</Container>
+      ) : test === 'cnhppgesmalte' ? (
+        <Container>{inkCnhPpgEsmalt}</Container>
+      ) : test === 'volvosherwinesmalte' ? (
+        <Container>{inkVolvoSherEsmalt}</Container>
+      ) : test === 'volvosherwinprimer' ? (
+        <Container>{inkVolvoSherPrimer}</Container>
       ) : (
-        'sem tinta'
+        ' sem tinta aqui :('
       )}
     </ContainerMaster>
   );

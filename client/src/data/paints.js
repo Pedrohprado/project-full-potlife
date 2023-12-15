@@ -213,7 +213,7 @@ export const inkCaterpillar = [
             catalisador: 'LT5731SDD',
             fabricante: 'SHERWIN WILLIANS',
             potlife: 240,
-            color: '',
+            color: 'yellow',
           },
           {
             code: '61140930',
@@ -222,7 +222,7 @@ export const inkCaterpillar = [
             catalisador: '61590761',
             fabricante: 'SHERWIN WILLIANS',
             potlife: 120,
-            color: '',
+            color: 'gray',
           },
           {
             code: 'HXY001',
@@ -267,7 +267,7 @@ export const inkCaterpillar = [
             catalisador: 'LT5731SDD',
             fabricante: 'PPG',
             potlife: 240,
-            color: '',
+            color: 'yellow',
           },
           {
             code: 'LT122002SSA',
@@ -276,7 +276,7 @@ export const inkCaterpillar = [
             catalisador: 'LT5731SDD',
             fabricante: 'PPG',
             potlife: 240,
-            color: '',
+            color: 'gray',
           },
           {
             code: 'LT0002SSA',
@@ -285,7 +285,7 @@ export const inkCaterpillar = [
             catalisador: 'LT0001SDD',
             fabricante: 'PPG',
             potlife: 180,
-            color: '',
+            color: 'gray',
           },
         ],
       },
@@ -318,6 +318,154 @@ export const inkJacto = [
             fabricante: 'SHERWIN WILLIANS',
             potlife: 240,
             color: 'yellow',
+          },
+        ],
+      },
+    ],
+  },
+];
+
+export const inkCnh = [
+  {
+    sherwin: [
+      {
+        esmalte: [
+          {
+            code: '64220673',
+            micras: 85,
+            ink: 'ESMALTE PU VERMELHO CNH',
+            catalisador: '61580008',
+            fabricante: 'SHERWIN WILLIANS',
+            potlife: 120,
+            color: 'red',
+          },
+        ],
+      },
+    ],
+
+    ppg: [
+      {
+        esmalte: [
+          {
+            code: 'LT15290SSA',
+            micras: 65,
+            ink: 'ESMALTE PU UD AMARELO NH',
+            catalisador: 'LT5750SDD',
+            fabricante: 'PPG',
+            potlife: 90,
+            color: 'yellow',
+          },
+          {
+            code: 'LT15032SSA',
+            micras: 45,
+            ink: 'ESMALTE PU UD AZUL NOVO',
+            catalisador: 'LT570SDD',
+            fabricante: 'PPG',
+            potlife: 90,
+            color: 'blue',
+          },
+          {
+            code: 'LT15003SSA',
+            micras: 50,
+            ink: 'ESMALTE PU UD POWERTAN(CASTANHO)',
+            catalisador: 'LT5750SDD',
+            fabricante: 'PPG',
+            potlife: 90,
+            color: '#422600',
+          },
+          {
+            code: 'LT15019SSA',
+            micras: 45,
+            ink: 'ESMALTE PU UD CINZA COMUM',
+            catalisador: 'LT5750SDD',
+            fabricante: 'PPG',
+            potlife: 90,
+            color: 'gray',
+          },
+          {
+            code: 'LT15033SSA',
+            micras: 45,
+            ink: 'ESMALTE PU UD CINZA ESCURO(DARK GRAY)',
+            catalisador: 'LT5750SDD',
+            fabricante: 'PPG',
+            potlife: 90,
+            color: '#3D3D3D',
+          },
+          {
+            code: 'LT15307SSA',
+            micras: 50,
+            ink: 'ESMALTE PU UD VERMELHO AGRICULTURA',
+            catalisador: 'LT5750SDD',
+            fabricante: 'PPG',
+            potlife: 90,
+            color: 'red',
+          },
+          {
+            code: 'LT15106SSA',
+            micras: 45,
+            ink: 'ESMALTE PU UD PRETO',
+            catalisador: 'LT5750SDD',
+            fabricante: 'PPG',
+            potlife: 120,
+            color: 'black',
+          },
+        ],
+      },
+    ],
+  },
+];
+
+export const inkVolvo = [
+  {
+    sherwin: [
+      {
+        esmalte: [
+          {
+            code: '64220706',
+            micras: 105,
+            ink: 'ESMALTE PU HS VCE 5001 YELLOW',
+            catalisador: '61580008',
+            fabricante: 'SHERWIN WILLIANS',
+            potlife: 180,
+            color: 'yellow',
+          },
+          {
+            code: '64220707',
+            micras: 95,
+            ink: 'ESMALTE HS VCE 5002 GRAY',
+            catalisador: '61580008',
+            fabricante: 'SHERWIN WILLIANS',
+            potlife: 180,
+            color: 'gray',
+          },
+          {
+            code: '64220746',
+            micras: 105,
+            ink: 'ESMALTE PU AMARELO SDLG',
+            catalisador: '61580008',
+            fabricante: 'SHERWIN WILLIANS',
+            potlife: 180,
+            color: 'yellow',
+          },
+          {
+            code: '64220747',
+            micras: 95,
+            ink: 'ESMALTE PU CINZA SDLG',
+            catalisador: '61580008',
+            fabricante: 'SHERWIN WILLIANS',
+            potlife: 120,
+            color: 'gray',
+          },
+        ],
+        primer: [
+          {
+            code: '64140981',
+            micras: 35,
+            ink: 'PRIMER EPÓXI BUFF BEGE',
+            catalisador: '61590006',
+            fabricante: 'SHERWIN WILLIANS',
+            potlife: 240,
+            color: '#e8d3b6',
           },
         ],
       },
