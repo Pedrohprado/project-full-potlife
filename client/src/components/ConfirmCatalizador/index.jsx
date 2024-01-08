@@ -59,11 +59,34 @@ const ConfirmCatalizador = ({
         console.error(error);
         window.alert(`Erro ao enviar: ${error}`);
       }
-      if (potlife === 120) {
-        setHours(2);
-        setMinutes(0);
-        setSeconds(0);
+      switch (potlife) {
+        case 90:
+          setHours(1);
+          setMinutes(30);
+          setSeconds(0);
+          break;
+        case 120:
+          setHours(2);
+          setMinutes(0);
+          setSeconds(0);
+          break;
+        case 180:
+          setHours(3);
+          setMinutes(0);
+          setSeconds(0);
+          break;
+        case 240:
+          setHours(4);
+          setMinutes(0);
+          setSeconds(0);
+          break;
+        default:
+          setHours(0);
+          setMinutes(0);
+          setSeconds(0);
+          break;
       }
+
       setValue(false);
       navigate('/cron');
     } else {

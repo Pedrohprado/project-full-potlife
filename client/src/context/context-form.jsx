@@ -8,8 +8,8 @@ export const GlobalForm = ({ children }) => {
   const [card, setCard] = React.useState('');
   const [sector, setSector] = React.useState('');
   const [login, setLogin] = React.useState(false);
-  const [potlifeTest, setPotlifeTest] = React.useState(120);
-  const [hours, setHours] = React.useState(2);
+  const [potlifeTest, setPotlifeTest] = React.useState(0);
+  const [hours, setHours] = React.useState(0);
   const [minutes, setMinutes] = React.useState(0);
   const [seconds, setSeconds] = React.useState(0);
 
