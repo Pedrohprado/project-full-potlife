@@ -98,7 +98,7 @@ const ConfirmCatalizador = ({
   return (
     <Container key={ink}>
       <Squad>
-        <Title>Confirme o catalizador</Title>
+        <Title>confirme o catalizador</Title>
 
         <ContainerInfo>
           <Ink>{ink}</Ink>
