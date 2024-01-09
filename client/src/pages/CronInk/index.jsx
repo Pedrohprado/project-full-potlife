@@ -95,6 +95,7 @@ const CronInk = () => {
     const newArray = [...localTime];
     newArray.pop();
     setLocalTime(newArray);
+    console.log(newArray);
   }
 
   return (
