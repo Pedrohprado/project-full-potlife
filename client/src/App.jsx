@@ -14,7 +14,7 @@ import Login from './pages/Login';
 import Form from './pages/Form';
 
 import ProtectedRoute from './protect/ProtectedRoute';
-import CronInk from './pages/CronInk';
+import ControlCronCharts from './pages/CrontrolCronCharts';
 
 function App() {
   return (
@@ -38,7 +38,7 @@ function App() {
             <Route path='clients/:id' element={<SelectForn />} />
             <Route path='clients/:id/:for' element={<SelectTypeInk />} />
             <Route path='clients/:id/:for/:type' element={<ClientInks />} />
-            <Route path='cron' element={<CronInk />} />
+            <Route path='cron/*' element={<ControlCronCharts />} />
           </Routes>
           <Normalize />
         </GlobalForm>

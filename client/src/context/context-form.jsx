@@ -12,6 +12,7 @@ export const GlobalForm = ({ children }) => {
   const [hours, setHours] = React.useState(0);
   const [minutes, setMinutes] = React.useState(0);
   const [seconds, setSeconds] = React.useState(0);
+  const [localTime, setLocalTime] = React.useState([]);
 
   return (
     <GlobalContext.Provider
@@ -32,6 +33,8 @@ export const GlobalForm = ({ children }) => {
         setMinutes,
         seconds,
         setSeconds,
+        localTime,
+        setLocalTime,
       }}
     >
       {children}

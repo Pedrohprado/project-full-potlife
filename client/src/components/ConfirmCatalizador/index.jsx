@@ -55,6 +55,7 @@ const ConfirmCatalizador = ({
         window.alert('código enviado!');
         console.log(response.data);
         setPotlifeTest(potlife);
+        navigate('/cron');
       } catch (error) {
         console.error(error);
         window.alert(`Erro ao enviar: ${error}`);
@@ -88,7 +89,6 @@ const ConfirmCatalizador = ({
       }
 
       setValue(false);
-      navigate('/cron');
     } else {
       window.alert('catalizador incorreto: erro na mistura');
       setVerific('');

@@ -1,19 +1,53 @@
 import React from 'react';
 import { GlobalContext } from '../../context/context-form';
+import {
+  Container,
+  Title,
+  SubTitle,
+  ContainerCron,
+  Navgation,
+  Button,
+} from './style';
 
 const CronInk = () => {
   const [stopcron, setStopcron] = React.useState(true);
-  const [localTime, setLocalTime] = React.useState([]);
-  const [getLocalTime, setGetLocalTime] = React.useState(null);
+  const [transform, setTransform] = React.useState(null);
+
   const {
     potlifeTest,
+    name,
+    card,
     hours,
     minutes,
     seconds,
     setHours,
     setMinutes,
     setSeconds,
+    localTime,
+    setLocalTime,
   } = React.useContext(GlobalContext);
+
+  React.useEffect(() => {});
+
+  React.useEffect(() => {
+    switch (potlifeTest) {
+      case 90:
+        setTransform('01:30');
+        break;
+      case 120:
+        setTransform('02:00');
+        break;
+      case 180:
+        setTransform('03:00');
+        break;
+      case 240:
+        setTransform('04:00');
+        break;
+      default:
+        setTransform(null);
+        break;
+    }
+  }, [potlifeTest]);
 
   React.useEffect(() => {
     if (stopcron) {
@@ -39,46 +73,60 @@ const CronInk = () => {
 
   function handleClick() {
     setStopcron(false);
+
     setLocalTime([
       ...localTime,
       {
+        funcionario: name,
+        cartao: card,
         hora: hours,
         minuto: minutes,
         segundo: seconds,
       },
     ]);
-    const value = JSON.parse(localStorage.getItem('time')) || [];
-    setGetLocalTime(value);
   }
 
   function SendLocal() {
     localStorage.setItem('time', JSON.stringify(localTime));
   }
+
+  function returnCron() {
+    setStopcron(true);
+    const newArray = [...localTime];
+    newArray.pop();
+    setLocalTime(newArray);
+  }
+
   return (
-    <div>
-      <h1>cron</h1>
-      <h2>{potlifeTest}</h2>
-      <h3>
+    <Container>
+      <Title>Cronômetro</Title>
+      <ContainerCron>
         {hours}:{minutes < 10 ? '0' : null}
         {minutes}:{seconds < 10 ? '0' : null}
         {seconds}
-      </h3>
-      <button onClick={handleClick}>PARAR CRON</button>
-      <button onClick={SendLocal}>SEND INFO</button>
-      <button onClick={() => setStopcron(true)}>RECOMEÇAR CRON</button>
+      </ContainerCron>
+      <SubTitle>O potlife é de {transform}</SubTitle>
 
-      <div>
-        {getLocalTime !== null
-          ? getLocalTime.map(({ hora, minuto, segundo }, i) => (
-              <div key={i}>
-                <h1>
-                  {hora} : {minuto} : {segundo}
-                </h1>
-              </div>
-            ))
-          : null}
-      </div>
-    </div>
+      <Navgation>
+        <Button onClick={handleClick}>PARAR CRONÔMETRO</Button>
+      </Navgation>
+
+      {stopcron ? null : (
+        <div
+          style={{
+            width: '50%',
+            height: '70px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          <p>deseja interromper o cronometro?</p>
+          <button onClick={SendLocal}>sim</button>
+          <button onClick={returnCron}>não</button>
+        </div>
+      )}
+    </Container>
   );
 };
 
