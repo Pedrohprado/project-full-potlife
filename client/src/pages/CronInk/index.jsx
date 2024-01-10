@@ -10,8 +10,13 @@ import {
 } from './style';
 
 const CronInk = () => {
-  const [stopcron, setStopcron] = React.useState(true);
   const [transform, setTransform] = React.useState(null);
+
+  const [stopcron, setStopcron] = React.useState(true);
+
+  const [quest, setQuest] = React.useState(false);
+  const [createForm, setCreateForm] = React.useState(false);
+  const [select, setSelect] = React.useState('');
 
   const {
     potlifeTest,
@@ -26,8 +31,6 @@ const CronInk = () => {
     localTime,
     setLocalTime,
   } = React.useContext(GlobalContext);
-
-  React.useEffect(() => {});
 
   React.useEffect(() => {
     switch (potlifeTest) {
@@ -72,7 +75,9 @@ const CronInk = () => {
   }, [hours, minutes, seconds, setHours, setMinutes, setSeconds, stopcron]);
 
   function handleClick() {
+    //BUTTON STOP CLOCK
     setStopcron(false);
+    setQuest(true);
 
     setLocalTime([
       ...localTime,
@@ -82,20 +87,40 @@ const CronInk = () => {
         hora: hours,
         minuto: minutes,
         segundo: seconds,
+        situacao: '',
       },
     ]);
   }
 
   function SendLocal() {
-    localStorage.setItem('time', JSON.stringify(localTime));
+    setCreateForm(true);
+    setQuest(false);
   }
 
   function returnCron() {
-    setStopcron(true);
+    // BUTTON NÂO
     const newArray = [...localTime];
     newArray.pop();
     setLocalTime(newArray);
-    console.log(newArray);
+
+    setStopcron(true);
+    setQuest(false);
+    setCreateForm(false);
+  }
+
+  function sendForm(event) {
+    event.preventDefault();
+
+    const lastObject = localTime[localTime.length - 1];
+    const newObject = { ...lastObject, situacao: select };
+
+    setLocalTime([...localTime.slice(0, -1), newObject]);
+
+    localStorage.setItem('time', JSON.stringify(localTime));
+  }
+
+  function changeOption({ target }) {
+    setSelect(target.value);
   }
 
   return (
@@ -112,7 +137,7 @@ const CronInk = () => {
         <Button onClick={handleClick}>PARAR CRONÔMETRO</Button>
       </Navgation>
 
-      {stopcron ? null : (
+      {!quest ? null : (
         <div
           style={{
             width: '50%',
@@ -125,6 +150,31 @@ const CronInk = () => {
           <p>deseja interromper o cronometro?</p>
           <button onClick={SendLocal}>sim</button>
           <button onClick={returnCron}>não</button>
+        </div>
+      )}
+
+      {!createForm ? null : (
+        <div
+          style={{
+            width: '50%',
+            height: '70px',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          <p>Qual o motivo da parada?</p>
+          <form onSubmit={sendForm}>
+            <select value={select} onChange={changeOption}>
+              <option value='finalizado'>Processo finalizado</option>
+              <option value='almoco'>Almoço</option>
+              <option value='banheiro'>Banheiro</option>
+              <option value='emergencia'>Emergencia</option>
+            </select>
+            {select}
+            <button>Enviar</button>
+          </form>
         </div>
       )}
     </Container>
