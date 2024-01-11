@@ -21,9 +21,7 @@ const Charts = () => {
       const value = JSON.parse(localStorage.getItem('time'));
       setGetLocalTime(value);
     }
-
     const interval = setInterval(getDatas, 3000);
-
     return () => clearInterval(interval);
   }, []);
 

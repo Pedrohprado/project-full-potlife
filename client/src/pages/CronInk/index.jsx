@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { GlobalContext } from '../../context/context-form';
 import {
   Container,
@@ -7,6 +7,10 @@ import {
   ContainerCron,
   Navgation,
   Button,
+  ContainerInfo,
+  ContainerInfoButton,
+  ButtonInfo,
+  ContainerAlert,
 } from './style';
 
 const CronInk = () => {
@@ -17,6 +21,10 @@ const CronInk = () => {
   const [quest, setQuest] = React.useState(false);
   const [createForm, setCreateForm] = React.useState(false);
   const [select, setSelect] = React.useState('');
+  const refEstado = React.useRef('');
+  const [value, setValue] = useState(
+    JSON.parse(localStorage.getItem('time')) || []
+  );
 
   const {
     potlifeTest,
@@ -30,8 +38,11 @@ const CronInk = () => {
     setSeconds,
     localTime,
     setLocalTime,
+    data,
+    setData,
   } = React.useContext(GlobalContext);
 
+  //Definindo o valor do pot-life, para exibição
   React.useEffect(() => {
     switch (potlifeTest) {
       case 90:
@@ -52,6 +63,7 @@ const CronInk = () => {
     }
   }, [potlifeTest]);
 
+  //Fazendo o cronometro funcionar
   React.useEffect(() => {
     if (stopcron) {
       const timer = setInterval(() => {
@@ -74,8 +86,22 @@ const CronInk = () => {
     }
   }, [hours, minutes, seconds, setHours, setMinutes, setSeconds, stopcron]);
 
+  //Pegando o valor do array definido, entrando no ultimo obj desse array e mudando o valor da "situacao" para o valor selecionado
+  React.useEffect(() => {
+    const info = refEstado.current;
+    const lastObject = info[info.length - 1];
+    const newObject = { ...lastObject, situacao: select };
+
+    if (info.length > 0) {
+      setData([...info.slice(0, -1), newObject]);
+    }
+  }, [select, setData]);
+
+  React.useEffect(() => {
+    localStorage.setItem('time', JSON.stringify(value));
+  }, [value]);
+
   function handleClick() {
-    //BUTTON STOP CLOCK
     setStopcron(false);
     setQuest(true);
 
@@ -95,10 +121,10 @@ const CronInk = () => {
   function SendLocal() {
     setCreateForm(true);
     setQuest(false);
+    refEstado.current = localTime;
   }
 
   function returnCron() {
-    // BUTTON NÂO
     const newArray = [...localTime];
     newArray.pop();
     setLocalTime(newArray);
@@ -108,15 +134,21 @@ const CronInk = () => {
     setCreateForm(false);
   }
 
+  //NOTAS: nessa function, ela pega o valor que existe dentro o localStorage, caso ja exista um valor, ele concatena com o novo definido
+  //caso não, ele define o data como primeiro valor
   function sendForm(event) {
     event.preventDefault();
-
-    const lastObject = localTime[localTime.length - 1];
-    const newObject = { ...lastObject, situacao: select };
-
-    setLocalTime([...localTime.slice(0, -1), newObject]);
-
-    localStorage.setItem('time', JSON.stringify(localTime));
+    //Estou enviando varios arrays
+    setValue((prevValue) => {
+      if (Array.isArray(prevValue)) {
+        console.log('entrou no spreed');
+        return [...prevValue, ...data];
+      } else {
+        console.log('entrou aqui');
+        return [data];
+      }
+    });
+    setLocalTime('');
   }
 
   function changeOption({ target }) {
@@ -138,21 +170,22 @@ const CronInk = () => {
       </Navgation>
 
       {!quest ? null : (
-        <div
-          style={{
-            width: '50%',
-            height: '70px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
-        >
-          <p>deseja interromper o cronometro?</p>
-          <button onClick={SendLocal}>sim</button>
-          <button onClick={returnCron}>não</button>
-        </div>
+        <ContainerInfo>
+          <ContainerAlert>
+            <h4>deseja interromper o cronometro?</h4>
+            <ContainerInfoButton>
+              <ButtonInfo onClick={SendLocal}>Sim</ButtonInfo>
+              <ButtonInfo
+                color='#303030'
+                colorText='white'
+                onClick={returnCron}
+              >
+                Não
+              </ButtonInfo>
+            </ContainerInfoButton>
+          </ContainerAlert>
+        </ContainerInfo>
       )}
-
       {!createForm ? null : (
         <div
           style={{
@@ -167,12 +200,12 @@ const CronInk = () => {
           <p>Qual o motivo da parada?</p>
           <form onSubmit={sendForm}>
             <select value={select} onChange={changeOption}>
-              <option value='finalizado'>Processo finalizado</option>
+              <option value=''></option>
+              <option value='finalizado'>Finalizado</option>
               <option value='almoco'>Almoço</option>
-              <option value='banheiro'>Banheiro</option>
-              <option value='emergencia'>Emergencia</option>
+              <option value='quebra'>Quebra</option>
+              <option value='emergencia'>Emergência</option>
             </select>
-            {select}
             <button>Enviar</button>
           </form>
         </div>
