@@ -126,8 +126,8 @@ export const ButtonInfo = styled.button`
   font-size: 1rem;
   font-weight: 500;
 
-  background-color: ${(props) => (props.color ? props.color : 'white')};
-  color: ${(props) => (props.colorText ? props.colorText : '#303030')};
+  background-color: ${({ color }) => (color ? color : 'white')};
+  color: ${({ colorText }) => (colorText ? colorText : '#303030')};
   border: 0.1px solid #30303030;
   border-radius: 5px;
 

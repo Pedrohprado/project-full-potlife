@@ -117,6 +117,7 @@ const CronInk = () => {
         hora: hours,
         minuto: minutes,
         segundo: seconds,
+        potlife: potlifeTest,
         situacao: '',
       },
     ]);
