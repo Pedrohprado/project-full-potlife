@@ -47,8 +47,8 @@ const ConfirmCatalizador = ({
     if (verific == catalizador) {
       try {
         const response = await axios.post(
-          'http://localhost:3333/potlife',
-          // "https://api-pintura-comun.onrender.com/potlife",
+          // 'http://localhost:3333/potlife',
+          'https://api-pintura-comun.onrender.com/potlife',
           JSON.stringify(data),
           config
         );
