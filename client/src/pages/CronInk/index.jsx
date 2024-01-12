@@ -11,6 +11,10 @@ import {
   ContainerInfoButton,
   ButtonInfo,
   ContainerAlert,
+  TitleAlert,
+  ContainerForm,
+  SelectForm,
+  OptionForm,
 } from './style';
 
 const CronInk = () => {
@@ -124,7 +128,9 @@ const CronInk = () => {
     refEstado.current = localTime;
   }
 
-  function returnCron() {
+  function returnCron(event) {
+    event.preventDefault();
+
     const newArray = [...localTime];
     newArray.pop();
     setLocalTime(newArray);
@@ -138,13 +144,11 @@ const CronInk = () => {
   //caso não, ele define o data como primeiro valor
   function sendForm(event) {
     event.preventDefault();
-    //Estou enviando varios arrays
     setValue((prevValue) => {
       if (Array.isArray(prevValue)) {
-        console.log('entrou no spreed');
+        //NOTAS: consegui solucionar o envio de cada obj dentro dos arrays, a solução foi, espalhar(...) o valor de "data"
         return [...prevValue, ...data];
       } else {
-        console.log('entrou aqui');
         return [data];
       }
     });
@@ -164,7 +168,6 @@ const CronInk = () => {
         {seconds}
       </ContainerCron>
       <SubTitle>O potlife é de {transform}</SubTitle>
-
       <Navgation>
         <Button onClick={handleClick}>PARAR CRONÔMETRO</Button>
       </Navgation>
@@ -172,7 +175,7 @@ const CronInk = () => {
       {!quest ? null : (
         <ContainerInfo>
           <ContainerAlert>
-            <h4>deseja interromper o cronometro?</h4>
+            <TitleAlert>deseja interromper o cronômetro?</TitleAlert>
             <ContainerInfoButton>
               <ButtonInfo onClick={SendLocal}>Sim</ButtonInfo>
               <ButtonInfo
@@ -187,28 +190,27 @@ const CronInk = () => {
         </ContainerInfo>
       )}
       {!createForm ? null : (
-        <div
-          style={{
-            width: '50%',
-            height: '70px',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
-        >
-          <p>Qual o motivo da parada?</p>
-          <form onSubmit={sendForm}>
-            <select value={select} onChange={changeOption}>
-              <option value=''></option>
-              <option value='finalizado'>Finalizado</option>
-              <option value='almoco'>Almoço</option>
-              <option value='quebra'>Quebra</option>
-              <option value='emergencia'>Emergência</option>
-            </select>
-            <button>Enviar</button>
-          </form>
-        </div>
+        <ContainerInfo>
+          <ContainerAlert>
+            <TitleAlert>Qual o motivo da parada?</TitleAlert>
+            <ContainerForm onSubmit={sendForm}>
+              <SelectForm value={select} onChange={changeOption}>
+                <OptionForm value=''></OptionForm>
+                <OptionForm value='finalizado'>Finalizado</OptionForm>
+                <OptionForm value='almoco'>Almoço</OptionForm>
+                <OptionForm value='quebra'>Quebra</OptionForm>
+                <OptionForm value='emergencia'>Emergência</OptionForm>
+              </SelectForm>
+              <ContainerInfoButton>
+                <ButtonInfo color='#303030' colorText='white'>
+                  parar
+                </ButtonInfo>
+
+                <ButtonInfo onClick={returnCron}>calcelar</ButtonInfo>
+              </ContainerInfoButton>
+            </ContainerForm>
+          </ContainerAlert>
+        </ContainerInfo>
       )}
     </Container>
   );

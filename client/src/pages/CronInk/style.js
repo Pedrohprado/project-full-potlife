@@ -76,25 +76,43 @@ export const ContainerInfo = styled.div`
 `;
 
 export const ContainerAlert = styled.div`
-  background-color: white;
+  width: 70%;
+  height: 40%;
 
-  width: 50%;
-  height: 15%;
-
-  border-radius: 0.5rem;
+  padding: 1rem;
 
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-
   gap: 10px;
+
+  background-color: white;
+  border-radius: 0.5rem;
+
+  @media screen and (max-width: 500px) {
+    width: 90%;
+    height: 20%;
+
+    padding: 0;
+  }
+`;
+
+export const TitleAlert = styled.h4`
+  font-size: 1.2rem;
+  font-weight: 500;
+  text-align: center;
+  width: 80%;
+
+  @media screen and (max-width: 500px) {
+    font-size: 0.9rem;
+  }
 `;
 
 export const ContainerInfoButton = styled.div`
   width: 80%;
 
-  margin-top: 10px;
+  margin-top: 30px;
 
   display: flex;
   align-items: center;
@@ -103,9 +121,9 @@ export const ContainerInfoButton = styled.div`
 `;
 
 export const ButtonInfo = styled.button`
-  padding: 6px 20px;
+  padding: 20px 40px;
 
-  font-size: 0.8rem;
+  font-size: 1rem;
   font-weight: 500;
 
   background-color: ${(props) => (props.color ? props.color : 'white')};
@@ -114,4 +132,39 @@ export const ButtonInfo = styled.button`
   border-radius: 5px;
 
   cursor: pointer;
+
+  @media screen and (max-width: 500px) {
+    font-size: 0.8rem;
+
+    padding: 6px 12px;
+  }
+`;
+
+export const ContainerForm = styled.form`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const SelectForm = styled.select`
+  width: 80%;
+  border: 1px solid #30303030;
+  border-radius: 5px;
+  padding: 20px 2px;
+
+  font-size: 0.9rem;
+
+  @media screen and (max-width: 500px) {
+    padding: 2px;
+  }
+`;
+
+export const OptionForm = styled.option`
+  font-size: 1rem;
+
+  @media screen and (max-width: 500px) {
+    font-size: 0.8rem;
+  }
 `;

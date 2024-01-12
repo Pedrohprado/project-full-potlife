@@ -10,8 +10,8 @@ export const Container = styled.div`
 `;
 
 export const ContainerGraphics = styled.section`
-  width: 80%;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   align-items: center;
   justify-content: center;
 `;
