@@ -16,6 +16,7 @@ import {
   SelectForm,
   OptionForm,
 } from './style';
+import { useNavigate } from 'react-router-dom';
 
 const CronInk = () => {
   const [transform, setTransform] = React.useState(null);
@@ -29,6 +30,8 @@ const CronInk = () => {
   const [value, setValue] = useState(
     JSON.parse(localStorage.getItem('time')) || []
   );
+
+  const navigate = useNavigate();
 
   const {
     potlifeTest,
@@ -141,6 +144,19 @@ const CronInk = () => {
     setCreateForm(false);
   }
 
+  function finishingCron(event) {
+    event.preventDefault();
+
+    const newArray = [...localTime];
+    newArray.pop();
+    setLocalTime(newArray);
+
+    setStopcron(true);
+    setQuest(false);
+    setCreateForm(false);
+    navigate('/');
+  }
+
   //NOTAS: nessa function, ela pega o valor que existe dentro o localStorage, caso ja exista um valor, ele concatena com o novo definido
   //caso não, ele define o data como primeiro valor
   function sendForm(event) {
@@ -207,7 +223,7 @@ const CronInk = () => {
                   parar
                 </ButtonInfo>
 
-                <ButtonInfo onClick={returnCron}>calcelar</ButtonInfo>
+                <ButtonInfo onClick={finishingCron}>cancelar</ButtonInfo>
               </ContainerInfoButton>
             </ContainerForm>
           </ContainerAlert>
