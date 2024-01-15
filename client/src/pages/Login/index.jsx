@@ -29,7 +29,7 @@ const Login = () => {
     setLoading(true);
     setErrorT(false);
     try {
-      await fetch(
+      const response = await fetch(
         // 'http://localhost:3000/login/',
         `${import.meta.env.VITE_BASE_URL}login/`,
         {
@@ -43,25 +43,23 @@ const Login = () => {
             setor: sector,
           }),
         }
-      )
-        .then((response) => response.json())
-        .then((data) => {
-          const info = data;
+      );
+      const json = await response.json();
+      const info = json;
 
-          if (info.length >= 1) {
-            console.log('login correto!');
-            setLoading(false);
-            //NOTES: I try created a protectRuter for page /home,
-            //problabily, i set setLogin(true) here.
-            setLogin(true);
-            navigate('/home');
-          } else {
-            console.log('Nome ou cartão incorretos');
-            setLogin(false);
-            setLoading(false);
-            setErrorT(true);
-          }
-        });
+      if (info.length >= 1) {
+        console.log('login correto!');
+        setLoading(false);
+        //NOTES: I try created a protectRuter for page /home,
+        //problabily, i set setLogin(true) here.
+        setLogin(true);
+        navigate('/home');
+      } else {
+        console.log('Nome ou cartão incorretos');
+        setLogin(false);
+        setLoading(false);
+        setErrorT(true);
+      }
     } catch (erro) {
       console.log(erro);
     }

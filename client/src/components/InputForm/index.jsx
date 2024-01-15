@@ -2,6 +2,7 @@
 import React from 'react';
 import { InputLabel, InputMain } from './style';
 import { FaRegAddressCard, FaPerson, FaIndustry } from 'react-icons/fa6';
+
 const InputModify = ({
   value,
   setValue,
