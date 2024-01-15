@@ -10,6 +10,7 @@ import SelectTypeInk from './pages/SelectTypeInk';
 import ClientInks from './pages/ClientInks';
 import ControlOrv from './components/ControlOrv';
 import ControlCronCharts from './pages/CrontrolCronCharts';
+import SetCradations from './pages/SetCradations';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       <BrowserRouter>
         <GlobalForm>
           <Routes>
+            <Route path='/home' element={<SetCradations />} />
             <Route path='/' element={<HomePage />} />
 
             <Route path='pontodeorvalho' element={<ControlOrv />} />
