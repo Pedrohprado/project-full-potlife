@@ -1,5 +1,8 @@
 export const API_URL_CATALIZADOR = 'http://localhost:3333/potlife';
-//   'https://api-pintura-comun.onrender.com/potlife';
+//   import.meta.env.VITE_BASE_URL_CONFIRM_CATALI;
+
+export const API_URL_ORV = import.meta.env.VITE_BASE_URL_ORV;
+// 'https://api-pintura-comun.onrender.com/condicao'
 
 export function CONFIRM_CATALIZADOR(body) {
   return {
@@ -10,6 +13,15 @@ export function CONFIRM_CATALIZADOR(body) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(body),
+    },
+  };
+}
+
+export function GET_CONDIT_ORV() {
+  return {
+    url: API_URL_ORV,
+    options: {
+      method: 'GET',
     },
   };
 }

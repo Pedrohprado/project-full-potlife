@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 import {
   Container,
   ContainerInfo,
@@ -25,6 +24,7 @@ import {
 } from 'react-icons/fa6';
 
 import DateControl from '../DateControl';
+import { GET_CONDIT_ORV } from '../../api';
 
 const ControlOrv = () => {
   const [temp, setTemp] = React.useState(null);
@@ -37,12 +37,15 @@ const ControlOrv = () => {
     setLoading(false);
     async function fetchData() {
       try {
-        const response = await axios.get(import.meta.env.VITE_BASE_URL_ORV);
-        const temperatura = response.data.temperatura;
-        const humidade = response.data.umidade;
+        const { url, options } = GET_CONDIT_ORV();
+        const response = await fetch(url, options);
+        const json = await response.json();
 
+        const temperatura = json.temperatura;
+        const humidade = json.umidade;
         setTemp(temperatura);
         setHum(humidade);
+
         setLoading(true);
       } catch (error) {
         console.error(error);
@@ -54,8 +57,6 @@ const ControlOrv = () => {
     return () => clearInterval(interval);
   }, []);
 
-  //NOTES: The Pull Request is here, because, humity and Temperature have
-  //a small difenrence between real and sensor cap, i can try set a const regulator
   React.useEffect(() => {
     let Tpo = (hum / 100) ** 0.125 * (112 + 0.9 * temp) + 0.1 * temp - 112;
 

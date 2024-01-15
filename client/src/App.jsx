@@ -9,11 +9,6 @@ import SelectForn from './pages/SelectForn';
 import SelectTypeInk from './pages/SelectTypeInk';
 import ClientInks from './pages/ClientInks';
 import ControlOrv from './components/ControlOrv';
-import MoveLogin from './pages/MoveLogin';
-import Login from './pages/Login';
-import Form from './pages/Form';
-
-import ProtectedRoute from './protect/ProtectedRoute';
 import ControlCronCharts from './pages/CrontrolCronCharts';
 
 function App() {
@@ -22,17 +17,8 @@ function App() {
       <BrowserRouter>
         <GlobalForm>
           <Routes>
-            <Route path='/' element={<MoveLogin />} />
-            <Route path='login' element={<Login />} />
-            <Route path='createdacount' element={<Form />} />
-            <Route
-              path='home'
-              element={
-                <ProtectedRoute>
-                  <HomePage />
-                </ProtectedRoute>
-              }
-            />
+            <Route path='/' element={<HomePage />} />
+
             <Route path='pontodeorvalho' element={<ControlOrv />} />
             <Route path='clients' element={<ClientPage />} />
             <Route path='clients/:id' element={<SelectForn />} />

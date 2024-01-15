@@ -26,8 +26,10 @@ const ConfirmCatalizador = ({
 }) => {
   const [verific, setVerific] = React.useState('');
   const inputFocus = React.useRef();
+
   const { setPotlifeTest, setHours, setMinutes, setSeconds } =
     React.useContext(GlobalContext);
+
   const navigate = useNavigate();
 
   React.useEffect(() => {
@@ -43,7 +45,6 @@ const ConfirmCatalizador = ({
       try {
         const { url, options } = CONFIRM_CATALIZADOR(data);
         const response = await fetch(url, options);
-
         window.alert('código enviado!');
         console.log(response);
         setPotlifeTest(potlife);

@@ -35,7 +35,7 @@ const DateControl = () => {
       <TitleWelcome>{welcome}</TitleWelcome>
       <TitleData>{dayOfWeek}</TitleData>
 
-      <Return to={'/home'}>
+      <Return to={'/'}>
         <AiOutlineArrowLeft size={22} />
       </Return>
     </ContainerDay>
