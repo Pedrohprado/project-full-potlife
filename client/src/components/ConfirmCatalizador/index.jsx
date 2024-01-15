@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-import axios from 'axios';
 import { GlobalContext } from '../../context/context-form';
 
 import {
@@ -15,6 +14,7 @@ import {
   Button,
 } from './style';
 import { useNavigate } from 'react-router-dom';
+import { CONFIRM_CATALIZADOR } from '../../api';
 
 const ConfirmCatalizador = ({
   ink,
@@ -38,28 +38,21 @@ const ConfirmCatalizador = ({
     const data = {
       potlife: potlife,
     };
-    const config = {
-      headers: {
-        'content-type': 'application/json',
-      },
-    };
 
     if (verific == catalizador) {
       try {
-        const response = await axios.post(
-          // 'http://localhost:3333/potlife',
-          'https://api-pintura-comun.onrender.com/potlife',
-          JSON.stringify(data),
-          config
-        );
+        const { url, options } = CONFIRM_CATALIZADOR(data);
+        const response = await fetch(url, options);
+
         window.alert('código enviado!');
-        console.log(response.data);
+        console.log(response);
         setPotlifeTest(potlife);
         navigate('/cron');
       } catch (error) {
         console.error(error);
         window.alert(`Erro ao enviar: ${error}`);
       }
+
       switch (potlife) {
         case 90:
           setHours(1);
