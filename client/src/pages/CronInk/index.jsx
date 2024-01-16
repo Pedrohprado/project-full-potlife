@@ -144,23 +144,11 @@ const CronInk = () => {
     setCreateForm(false);
   }
 
-  function finishingCron(event) {
-    event.preventDefault();
-
-    const newArray = [...localTime];
-    newArray.pop();
-    setLocalTime(newArray);
-
-    setStopcron(true);
-    setQuest(false);
-    setCreateForm(false);
-    navigate('/');
-  }
-
   //NOTAS: nessa function, ela pega o valor que existe dentro o localStorage, caso ja exista um valor, ele concatena com o novo definido
   //caso não, ele define o data como primeiro valor
   function sendForm(event) {
     event.preventDefault();
+
     setValue((prevValue) => {
       if (Array.isArray(prevValue)) {
         //NOTAS: consegui solucionar o envio de cada obj dentro dos arrays, a solução foi, espalhar(...) o valor de "data"
@@ -170,6 +158,10 @@ const CronInk = () => {
       }
     });
     setLocalTime('');
+
+    const lastObject = data[data.length - 1];
+
+    if (lastObject.situacao === 'finalizado') navigate('/');
   }
 
   function changeOption({ target }) {
@@ -223,7 +215,7 @@ const CronInk = () => {
                   parar
                 </ButtonInfo>
 
-                <ButtonInfo onClick={finishingCron}>cancelar</ButtonInfo>
+                <ButtonInfo onClick={returnCron}>cancelar</ButtonInfo>
               </ContainerInfoButton>
             </ContainerForm>
           </ContainerAlert>

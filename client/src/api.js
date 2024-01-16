@@ -1,6 +1,6 @@
-export const API_URL_CATALIZADOR = import.meta.env.VITE_BASE_URL_CONFIRM_CATALI;
+export const API_URL_CATALIZADOR = 'http://localhost:3333/potlife';
 
-// 'http://localhost:3333/potlife'
+//import.meta.env.VITE_BASE_URL_CONFIRM_CATALI;
 
 export const API_URL_ORV = import.meta.env.VITE_BASE_URL_ORV;
 // 'https://api-pintura-comun.onrender.com/condicao'

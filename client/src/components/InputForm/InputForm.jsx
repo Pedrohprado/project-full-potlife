@@ -1,15 +1,30 @@
+import { ContainerForm, Error, Input, Label } from './style';
+
 /* eslint-disable react/prop-types */
-const InputForm = ({ setValue, label, type, name }) => {
+const InputForm = ({
+  onChange,
+  label,
+  type,
+  name,
+  maxlenght,
+  onblur,
+  error,
+  placeholder,
+}) => {
   return (
-    <div>
-      <label htmlFor={name}>{label}</label>
-      <input
+    <ContainerForm>
+      <Label htmlFor={name}>{label}</Label>
+      <Input
+        placeholder={placeholder}
+        maxLength={maxlenght}
         id={name}
         name={name}
         type={type}
-        onChange={({ target }) => setValue(target.value)}
-      ></input>
-    </div>
+        onChange={onChange}
+        onBlur={onblur}
+      />
+      {error && <Error>{error}</Error>}
+    </ContainerForm>
   );
 };
 

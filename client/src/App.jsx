@@ -9,8 +9,9 @@ import SelectForn from './pages/SelectForn';
 import SelectTypeInk from './pages/SelectTypeInk';
 import ClientInks from './pages/ClientInks';
 import ControlOrv from './components/ControlOrv';
-import ControlCronCharts from './pages/CrontrolCronCharts';
 import SetCradations from './pages/SetCradations';
+import CronInk from './pages/CronInk';
+import Grafics from './pages/Charts/Charts';
 
 function App() {
   return (
@@ -18,15 +19,16 @@ function App() {
       <BrowserRouter>
         <GlobalForm>
           <Routes>
-            <Route path='/home' element={<SetCradations />} />
-            <Route path='/' element={<HomePage />} />
+            <Route path='/' element={<SetCradations />} />
+            <Route path='/home' element={<HomePage />} />
 
             <Route path='pontodeorvalho' element={<ControlOrv />} />
             <Route path='clients' element={<ClientPage />} />
             <Route path='clients/:id' element={<SelectForn />} />
             <Route path='clients/:id/:for' element={<SelectTypeInk />} />
             <Route path='clients/:id/:for/:type' element={<ClientInks />} />
-            <Route path='cron/*' element={<ControlCronCharts />} />
+            <Route path='cron' element={<CronInk />} />
+            <Route path='graficos' element={<Grafics />} />
           </Routes>
           <Normalize />
         </GlobalForm>
