@@ -106,7 +106,11 @@ const CronInk = () => {
 
   React.useEffect(() => {
     localStorage.setItem('time', JSON.stringify(value));
-  }, [value]);
+
+    const lastObject = data[data.length - 1];
+
+    if (lastObject.situacao === 'finalizado') navigate('/home');
+  }, [value, data, navigate]);
 
   function handleClick() {
     setStopcron(false);
@@ -158,10 +162,6 @@ const CronInk = () => {
       }
     });
     setLocalTime('');
-
-    const lastObject = data[data.length - 1];
-
-    if (lastObject.situacao === 'finalizado') navigate('/');
   }
 
   function changeOption({ target }) {

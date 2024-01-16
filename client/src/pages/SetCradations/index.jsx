@@ -16,7 +16,9 @@ const SetCradations = () => {
     if (nome.validation() && card.validation()) {
       setName(nome.value);
       setCard(card.value);
-      navigate('/');
+      navigate('/home');
+    } else {
+      console.log('erro');
     }
   }
 
