@@ -12,13 +12,10 @@ import {
   ComposedChart,
 } from 'recharts';
 import { Container, ContainerGraphics } from './style';
-import { GlobalContext } from '../../context/context-form';
 
 const Charts = () => {
   const [getLocalTime, setGetLocalTime] = React.useState([]);
   const [data, setData] = React.useState(null);
-
-  const { potlifeTest } = React.useContext(GlobalContext);
 
   React.useEffect(() => {
     function getDatas() {
@@ -40,13 +37,15 @@ const Charts = () => {
         const newObj = {
           minuto: multiply.hora,
           diferencia: multiply.diference,
-          potlife: potlifeTest,
+          potlife: multiply.potlife,
+          situacao: multiply.situacao,
         };
         return newObj;
       });
       setData(some);
+      console.log(some);
     }
-  }, [getLocalTime, potlifeTest]);
+  }, [getLocalTime]);
 
   return (
     <Container>
@@ -69,12 +68,12 @@ const Charts = () => {
 
         <LineChart width={500} height={350} data={data}>
           <CartesianGrid strokeDasharray='3 3' />
-          <XAxis />
+          <XAxis dataKey='situacao' />
           <YAxis />
           <Tooltip />
           <Legend />
-          <Line dataKey='minuto' type='monotone' stroke='purple' />
           <Line dataKey='potlife' type='monotone' stroke='orange' />
+          <Line dataKey='minuto' type='monotone' stroke='purple' />
           <Line dataKey='diferencia' type='monotone' stroke='blue' />
         </LineChart>
       </ContainerGraphics>
