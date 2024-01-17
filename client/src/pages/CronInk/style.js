@@ -77,8 +77,8 @@ export const ContainerInfo = styled.div`
 `;
 
 export const ContainerAlert = styled.div`
-  width: 70%;
-  height: 40%;
+  width: 80%;
+  height: 50%;
 
   padding: 1rem;
 
