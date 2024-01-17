@@ -41,6 +41,9 @@ const ConfirmCatalizador = ({
       potlife: potlife,
     };
 
+    console.log(verific);
+    console.log(catalizador);
+
     if (verific == catalizador) {
       try {
         const { url, options } = CONFIRM_CATALIZADOR(data);
