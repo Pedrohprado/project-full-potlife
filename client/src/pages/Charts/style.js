@@ -14,4 +14,8 @@ export const ContainerGraphics = styled.section`
   grid-template-columns: 1fr 1fr;
   align-items: center;
   justify-content: center;
+  @media screen and (max-width: 800px) {
+    grid-template-columns: 1fr;
+    gap: 100px;
+  }
 `;

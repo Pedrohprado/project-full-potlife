@@ -50,7 +50,7 @@ const Charts = () => {
 
   return (
     <Container>
-      <h1>Cron teste</h1>
+      <h1 style={{ marginBottom: '50px' }}>Cron teste</h1>
       <ContainerGraphics>
         <ComposedChart width={500} height={350} data={data}>
           <CartesianGrid strokeDasharray='3 3' />
