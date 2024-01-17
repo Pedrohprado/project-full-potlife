@@ -10,6 +10,7 @@ import {
   Tooltip,
   Legend,
   ComposedChart,
+  Area,
 } from 'recharts';
 import { Container, ContainerGraphics } from './style';
 
@@ -36,7 +37,7 @@ const Charts = () => {
         };
         const newObj = {
           minuto: multiply.hora,
-          diferencia: multiply.diference,
+          trabalhado: multiply.diference,
           potlife: multiply.potlife,
           situacao: multiply.situacao,
         };
@@ -74,8 +75,26 @@ const Charts = () => {
           <Legend />
           <Line dataKey='potlife' type='monotone' stroke='orange' />
           <Line dataKey='minuto' type='monotone' stroke='purple' />
-          <Line dataKey='diferencia' type='monotone' stroke='blue' />
+          <Line dataKey='trabalhado' type='monotone' stroke='blue' />
         </LineChart>
+
+        <ComposedChart width={500} height={350} data={data}>
+          <CartesianGrid strokeDasharray='3 3' />
+          <XAxis dataKey='situacao' />
+          <YAxis />
+          <Tooltip />
+          <Line dataKey='potlife' type='monotone' stroke='orange' />
+
+          <Area
+            type='monotone'
+            dataKey='trabalhado'
+            stackId='1'
+            stroke='blue'
+            fill='blue'
+          />
+          {/* <Line dataKey='minuto' type='monotone' stroke='purple' />
+          <Line dataKey='diferencia' type='monotone' stroke='blue' /> */}
+        </ComposedChart>
       </ContainerGraphics>
     </Container>
   );
