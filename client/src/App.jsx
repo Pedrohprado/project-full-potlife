@@ -13,6 +13,7 @@ import SetCradations from './pages/SetCradations';
 import CronInk from './pages/CronInk';
 import Grafics from './pages/Charts/Charts';
 import HeaderMaster from './components/HeaderMaster/HeaderMaster';
+import Footer from './components/Footer/Footer';
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
             <Route path='cron' element={<CronInk />} />
             <Route path='graficos' element={<Grafics />} />
           </Routes>
+          <Footer />
           <Normalize />
         </GlobalForm>
       </BrowserRouter>
