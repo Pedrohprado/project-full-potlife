@@ -8,7 +8,7 @@ import { Button, Container, Form } from './style';
 const SetCradations = () => {
   const nome = useForm();
   const card = useForm('number');
-  const { setName, setCard } = React.useContext(GlobalContext);
+  const { setName, setCard, setLogin } = React.useContext(GlobalContext);
   const navigate = useNavigate();
 
   function handleSubmit(event) {
@@ -16,6 +16,7 @@ const SetCradations = () => {
     if (nome.validation() && card.validation()) {
       setName(nome.value);
       setCard(card.value);
+      setLogin(true);
       navigate('/home');
     } else {
       console.log('erro');
@@ -24,7 +25,6 @@ const SetCradations = () => {
 
   return (
     <Container>
-      <h1>INK Tec</h1>
       <Form onSubmit={handleSubmit}>
         <InputForm
           placeholder='nome do funcionário'
@@ -40,7 +40,7 @@ const SetCradations = () => {
           name='cartao'
           {...card}
         />
-        <Button>enviar</Button>
+        <Button>entrar</Button>
       </Form>
     </Container>
   );

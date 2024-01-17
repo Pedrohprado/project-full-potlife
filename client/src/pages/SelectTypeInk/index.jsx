@@ -1,5 +1,4 @@
 import { useParams } from 'react-router-dom';
-import Header from '../../components/Header';
 import { Container, Button, ContainerButton, Title } from './style';
 
 export default function SelectTypeInk() {
@@ -7,7 +6,6 @@ export default function SelectTypeInk() {
   return (
     <>
       <Container>
-        <Header />
         <Title>Selecione o tipo de tinta:</Title>
         <ContainerButton>
           <Button to={`/clients/${parans.id}/${parans.for}/esmalte`}>

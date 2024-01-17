@@ -11,7 +11,6 @@ import {
 } from '../../data/paints';
 import ButtonToCatali from '../../components/ButtonToCatali/ButtonToCatali';
 
-import Header from '../../components/Header';
 import { useParams } from 'react-router-dom';
 
 export default function CliientInks() {
@@ -321,7 +320,6 @@ export default function CliientInks() {
 
   return (
     <ContainerMaster>
-      <Header />
       <Title>Selecione a tinta</Title>
       {test === 'johndeeresherwinesmalte' ? (
         <Container>{inkJdSherEsmalt}</Container>

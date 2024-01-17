@@ -1,7 +1,11 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const ButtonReturnMaster = styled.button`
-  padding: 17px 50px;
+  padding: 17px 40px;
+  background-color: black;
+  color: white;
+
+  border-radius: 7px;
 
   display: flex;
   align-items: center;
@@ -10,12 +14,8 @@ export const ButtonReturnMaster = styled.button`
 
   font-size: 1.2rem;
 
-  color: #f1f1f1;
-
-  border-radius: 4px;
   border: none;
 
-  background-color: gray;
   transition: background 0.3s;
 
   &:hover {

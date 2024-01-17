@@ -1,5 +1,3 @@
-import Header from '../../components/Header';
-
 import { Container, Text, ContainerGrid, ButtonClient, TextAux } from './style';
 import clients from '../../data/clients';
 
@@ -18,7 +16,6 @@ export default function ClientPage() {
 
   return (
     <Container>
-      <Header />
       <Text>Selecione o cliente:</Text>
       <ContainerGrid>{cliente}</ContainerGrid>
     </Container>

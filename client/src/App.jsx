@@ -12,12 +12,14 @@ import ControlOrv from './components/ControlOrv';
 import SetCradations from './pages/SetCradations';
 import CronInk from './pages/CronInk';
 import Grafics from './pages/Charts/Charts';
+import HeaderMaster from './components/HeaderMaster/HeaderMaster';
 
 function App() {
   return (
     <>
       <BrowserRouter>
         <GlobalForm>
+          <HeaderMaster />
           <Routes>
             <Route path='/' element={<SetCradations />} />
             <Route path='/home' element={<HomePage />} />
