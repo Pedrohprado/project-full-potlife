@@ -165,7 +165,7 @@ export default function CliientInks() {
   );
 
   const inkJdPpgPrimer = inkJohnDeere[0].ppg[0].primer.map(
-    ({ ink, code, color, micras, potlife, catalisador }, i) => {
+    ({ ink, code, color, micras, potlife, catalisador }, i) => (
       <ButtonToCatali
         key={i}
         ink={ink}
@@ -174,9 +174,10 @@ export default function CliientInks() {
         micras={micras}
         potlife={potlife}
         catalisador={catalisador}
-      />;
-    }
+      />
+    )
   );
+  console.log(inkJohnDeere[0].ppg[0].primer);
 
   const inkCnhSherEsmalt = inkCnh[0].sherwin[0].esmalte.map(
     ({ ink, code, color, micras, potlife, catalisador }, i) => (

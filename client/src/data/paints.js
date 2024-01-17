@@ -90,6 +90,7 @@ export const inkJohnDeere = [
         ],
       },
     ],
+
     ppg: [
       {
         esmalte: [
@@ -139,6 +140,7 @@ export const inkJohnDeere = [
             color: '#36454F',
           },
         ],
+
         primer: [
           {
             code: 'LT0002SSA',
