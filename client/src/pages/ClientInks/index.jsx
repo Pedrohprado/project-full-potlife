@@ -164,6 +164,20 @@ export default function CliientInks() {
     )
   );
 
+  const inkJdPpgPrimer = inkJohnDeere[0].ppg[0].primer.map(
+    ({ ink, code, color, micras, potlife, catalisador }, i) => {
+      <ButtonToCatali
+        key={i}
+        ink={ink}
+        code={code}
+        color={color}
+        micras={micras}
+        potlife={potlife}
+        catalisador={catalisador}
+      />;
+    }
+  );
+
   const inkCnhSherEsmalt = inkCnh[0].sherwin[0].esmalte.map(
     ({ ink, code, color, micras, potlife, catalisador }, i) => (
       <ButtonToCatali
@@ -314,6 +328,8 @@ export default function CliientInks() {
         <Container>{inkJdSherPrimer}</Container>
       ) : test === 'johndeereppgesmalte' ? (
         <Container>{inkJdPpgEsmalt}</Container>
+      ) : test === 'johndeereppgprimer' ? (
+        <Container>{inkJdPpgPrimer}</Container>
       ) : test === 'caterpillarsherwinesmalte' ? (
         <Container>{inkCatSherEsmalt}</Container>
       ) : test === 'caterpillarsherwinprimer' ? (

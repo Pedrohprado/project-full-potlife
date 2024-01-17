@@ -106,7 +106,7 @@ const ConfirmCatalizador = ({
           ref={inputFocus}
           type='text'
           value={verific.toLocaleUpperCase()}
-          onChange={(e) => setVerific(e.target.value)}
+          onChange={(e) => setVerific(e.target.value.toUpperCase())}
         />
         <ContainerButtons>
           <Button onClick={onClick}>VOLTAR</Button>
