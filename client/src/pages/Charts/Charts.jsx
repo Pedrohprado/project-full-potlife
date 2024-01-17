@@ -50,8 +50,26 @@ const Charts = () => {
 
   return (
     <Container>
-      <h1 style={{ marginBottom: '50px' }}>Cron teste</h1>
+      <h2 style={{ marginBottom: '50px' }}>Levantamento</h2>
       <ContainerGraphics>
+        <ComposedChart width={500} height={350} data={data}>
+          <CartesianGrid strokeDasharray='3 3' />
+          <XAxis dataKey='situacao' />
+          <YAxis />
+          <Tooltip />
+          <Line dataKey='potlife' type='monotone' stroke='orange' />
+
+          <Area
+            type='monotone'
+            dataKey='trabalhado'
+            stackId='1'
+            stroke='blue'
+            fill='blue'
+          />
+          {/* <Line dataKey='minuto' type='monotone' stroke='purple' />
+          <Line dataKey='diferencia' type='monotone' stroke='blue' /> */}
+        </ComposedChart>
+
         <ComposedChart width={500} height={350} data={data}>
           <CartesianGrid strokeDasharray='3 3' />
           <XAxis />
@@ -77,24 +95,6 @@ const Charts = () => {
           <Line dataKey='minuto' type='monotone' stroke='purple' />
           <Line dataKey='trabalhado' type='monotone' stroke='blue' />
         </LineChart>
-
-        <ComposedChart width={500} height={350} data={data}>
-          <CartesianGrid strokeDasharray='3 3' />
-          <XAxis dataKey='situacao' />
-          <YAxis />
-          <Tooltip />
-          <Line dataKey='potlife' type='monotone' stroke='orange' />
-
-          <Area
-            type='monotone'
-            dataKey='trabalhado'
-            stackId='1'
-            stroke='blue'
-            fill='blue'
-          />
-          {/* <Line dataKey='minuto' type='monotone' stroke='purple' />
-          <Line dataKey='diferencia' type='monotone' stroke='blue' /> */}
-        </ComposedChart>
       </ContainerGraphics>
     </Container>
   );
