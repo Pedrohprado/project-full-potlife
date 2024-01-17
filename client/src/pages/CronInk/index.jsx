@@ -15,8 +15,8 @@ import {
   ContainerForm,
   SelectForm,
   OptionForm,
+  NavHome,
 } from './style';
-import { useNavigate } from 'react-router-dom';
 
 const CronInk = () => {
   const [transform, setTransform] = React.useState(null);
@@ -25,13 +25,13 @@ const CronInk = () => {
 
   const [quest, setQuest] = React.useState(false);
   const [createForm, setCreateForm] = React.useState(false);
+  const [toHome, setToHome] = React.useState(false);
   const [select, setSelect] = React.useState('');
-  const refEstado = React.useRef('');
   const [value, setValue] = useState(
     JSON.parse(localStorage.getItem('time')) || []
   );
 
-  const navigate = useNavigate();
+  const refEstado = React.useRef('');
 
   const {
     potlifeTest,
@@ -106,11 +106,7 @@ const CronInk = () => {
 
   React.useEffect(() => {
     localStorage.setItem('time', JSON.stringify(value));
-
-    const lastObject = data[data.length - 1];
-
-    if (lastObject.situacao === 'finalizado') navigate('/home');
-  }, [value, data, navigate]);
+  }, [value]);
 
   function handleClick() {
     setStopcron(false);
@@ -155,13 +151,13 @@ const CronInk = () => {
 
     setValue((prevValue) => {
       if (Array.isArray(prevValue)) {
-        //NOTAS: consegui solucionar o envio de cada obj dentro dos arrays, a solução foi, espalhar(...) o valor de "data"
         return [...prevValue, ...data];
       } else {
         return [data];
       }
     });
     setLocalTime('');
+    if (data[0].situacao === 'finalizado') setToHome(true);
   }
 
   function changeOption({ target }) {
@@ -211,11 +207,16 @@ const CronInk = () => {
                 <OptionForm value='emergencia'>Emergência</OptionForm>
               </SelectForm>
               <ContainerInfoButton>
-                <ButtonInfo color='#303030' colorText='white'>
-                  parar
-                </ButtonInfo>
-
-                <ButtonInfo onClick={returnCron}>cancelar</ButtonInfo>
+                {toHome ? (
+                  <NavHome to='/home'>finalizar</NavHome>
+                ) : (
+                  <>
+                    <ButtonInfo onClick={returnCron}>cancelar</ButtonInfo>
+                    <ButtonInfo color='#303030' colorText='white'>
+                      parar
+                    </ButtonInfo>
+                  </>
+                )}
               </ContainerInfoButton>
             </ContainerForm>
           </ContainerAlert>

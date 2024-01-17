@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const Container = styled.div`
@@ -121,6 +122,26 @@ export const ContainerInfoButton = styled.div`
 `;
 
 export const ButtonInfo = styled.button`
+  padding: 20px 40px;
+
+  font-size: 1rem;
+  font-weight: 500;
+
+  background-color: ${({ color }) => (color ? color : 'white')};
+  color: ${({ colorText }) => (colorText ? colorText : '#303030')};
+  border: 0.1px solid #30303030;
+  border-radius: 5px;
+
+  cursor: pointer;
+
+  @media screen and (max-width: 500px) {
+    font-size: 0.8rem;
+
+    padding: 6px 12px;
+  }
+`;
+
+export const NavHome = styled(Link)`
   padding: 20px 40px;
 
   font-size: 1rem;
