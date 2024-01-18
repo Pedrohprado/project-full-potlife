@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <Footeres>
       <Descrip>
-        @Pedertractor&Tractor components - todos os direitos reservados
+        Pedertractor&Tractor components - todos os direitos reservados
       </Descrip>
       <Logo src='/logo.png' alt='logo pedertracor' />
     </Footeres>
