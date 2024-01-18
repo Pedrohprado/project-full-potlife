@@ -29,27 +29,28 @@ const Charts = () => {
 
   React.useEffect(() => {
     if (getLocalTime !== null) {
-      const some = getLocalTime.map((obj) => {
-        if (obj.hora === 0) {
-          obj.hora;
-        } else {
-          obj.hora = obj.hora * 60;
-        }
-        const multiply = {
-          ...obj,
-          diference: obj.potlife - (obj.hora + obj.minuto),
-        };
+      const some = [...getLocalTime];
+      // const some = getLocalTime.map((obj) => {
+      //   if (obj.hora === 0) {
+      //     obj.hora;
+      //   } else {
+      //     obj.hora = obj.hora * 60;
+      //   }
+      //   const multiply = {
+      //     ...obj,
+      //     diference: obj.potlife - (obj.hora + obj.minuto),
+      //   };
 
-        const newObj = {
-          minuto: multiply.hora + multiply.minuto,
-          trabalhado: multiply.diference,
-          potlife: multiply.potlife,
-          situacao: multiply.situacao,
-        };
-        return newObj;
-      });
-      setData(some);
+      //   const newObj = {
+      //     minuto: multiply.hora + multiply.minuto,
+      //     trabalhado: multiply.diference,
+      //     potlife: multiply.potlife,
+      //     situacao: multiply.situacao,
+      //   };
+      //   return newObj;
+      // });
       console.log(some);
+      setData(some);
     }
   }, [getLocalTime]);
 
@@ -82,7 +83,7 @@ const Charts = () => {
           <Tooltip />
           <Legend />
           <Bar
-            dataKey='minuto'
+            dataKey='rest'
             barSize={10}
             fill='#413ea0'
             activeBar={<Rectangle fill='pink' stroke='blue' />}

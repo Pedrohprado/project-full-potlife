@@ -97,10 +97,32 @@ const CronInk = () => {
   React.useEffect(() => {
     const info = refEstado.current;
     const lastObject = info[info.length - 1];
-    const newObject = { ...lastObject, situacao: select };
+    console.log(lastObject);
+    if (lastObject) {
+      if (lastObject.hora === 0 && lastObject !== null) {
+        lastObject.hora;
+      } else {
+        lastObject.hora = lastObject.hora * 60;
+      }
+      const modifyObj = {
+        cartao: lastObject.cartao,
+        funcionario: lastObject.funcionario,
+        potlife: lastObject.potlife,
+        rest: lastObject.hora + lastObject.minuto,
+        situacao: '',
+      };
 
-    if (info.length > 0) {
-      setData([...info.slice(0, -1), newObject]);
+      const thisObj = {
+        ...modifyObj,
+        trabalhado: modifyObj.potlife - modifyObj.rest,
+      };
+      const newObject = { ...thisObj, situacao: select };
+
+      if (info.length > 0) {
+        setData([...info.slice(0, -1), newObject]);
+      }
+    } else {
+      console.log('falso');
     }
   }, [select, setData]);
 
