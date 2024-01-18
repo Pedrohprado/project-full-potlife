@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 export const Container = styled.div`
   display: flex;
@@ -8,8 +8,8 @@ export const Container = styled.div`
   justify-content: center;
   gap: 40px;
   align-items: center;
-  width: 100vw;
-  min-height: 100vh;
+  width: 100%;
+  height: 100vh;
 `;
 
 export const ContainerButtons = styled.div`

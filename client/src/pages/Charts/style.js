@@ -18,4 +18,5 @@ export const ContainerGraphics = styled.section`
     grid-template-columns: 1fr;
     gap: 100px;
   }
+  z-index: -1;
 `;

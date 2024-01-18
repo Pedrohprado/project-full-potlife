@@ -1,5 +1,6 @@
 import React from 'react';
 import { FaUser, FaRegAddressCard } from 'react-icons/fa6';
+import { IoMenu, IoCloseSharp, IoHomeSharp } from 'react-icons/io5';
 import { MdExitToApp } from 'react-icons/md';
 import { GlobalContext } from '../../context/context-form';
 import { Button, DropMenu, Header, Optins, TitleList } from './style';
@@ -16,13 +17,19 @@ const HeaderMaster = () => {
     navigate('/');
   }
 
+  function goHome() {
+    setValue(false);
+    navigate('/home');
+  }
   return (
     <Header>
       <h1>INK Tec</h1>
-      {/* lembrar de remover a ! */}
       {login ? (
-        <Button onClick={() => setValue(!value)}>
-          <FaUser size={20} />
+        <Button
+          onClick={() => setValue(!value)}
+          style={{ transform: value ? 'rotate(180deg)' : '' }}
+        >
+          {value ? <IoCloseSharp size={20} /> : <IoMenu size={20} />}
         </Button>
       ) : null}
       {value ? (
@@ -34,6 +41,9 @@ const HeaderMaster = () => {
           </Optins>
           <Optins>
             {card && <div>{card}</div>} <FaRegAddressCard size={20} />
+          </Optins>
+          <Optins onClick={goHome}>
+            home <IoHomeSharp size={20} />
           </Optins>
           <Optins onClick={setLogount}>
             sair <MdExitToApp size={20} />
