@@ -30,13 +30,18 @@ const Charts = () => {
   React.useEffect(() => {
     if (getLocalTime !== null) {
       const some = getLocalTime.map((obj) => {
+        if (obj.hora === 0) {
+          obj.hora;
+        } else {
+          obj.hora = obj.hora * 60;
+        }
         const multiply = {
           ...obj,
-          hora: obj.hora * 60 + obj.minuto,
-          diference: obj.hora * 60 - obj.minuto,
+          diference: obj.potlife - (obj.hora + obj.minuto),
         };
+
         const newObj = {
-          minuto: multiply.hora,
+          minuto: multiply.hora + multiply.minuto,
           trabalhado: multiply.diference,
           potlife: multiply.potlife,
           situacao: multiply.situacao,
