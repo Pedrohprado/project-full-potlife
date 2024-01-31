@@ -179,7 +179,14 @@ const CronInk = () => {
       }
     });
     setLocalTime('');
-    if (data[0].situacao === 'finalizado') setToHome(true);
+
+    if (data[0].situacao === 'finalizado') {
+      setToHome(true);
+    } else {
+      setStopcron(true);
+      setQuest(false);
+      setCreateForm(false);
+    }
   }
 
   function changeOption({ target }) {
