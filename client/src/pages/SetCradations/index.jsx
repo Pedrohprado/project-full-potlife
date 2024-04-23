@@ -4,20 +4,25 @@ import { GlobalContext } from '../../context/context-form';
 import useForm from '../../Hooks/useForm';
 import { useNavigate } from 'react-router-dom';
 import { Button, Container, Form } from './style';
+import FormCheckBox from '../../components/formcheckbox/formcheckbox';
+import FormSelect from '../../components/formselect/formselect';
 
 const SetCradations = () => {
+  const [checkbox, setCheckBox] = React.useState('');
+  const [select, setSelect] = React.useState('');
   const nome = useForm();
   const card = useForm('number');
-  const cabine = useForm();
-  const { setName, setCard, setLogin } = React.useContext(GlobalContext);
+  const { setName, setCard, setLogin, setCabin, setUnit } =
+    React.useContext(GlobalContext);
   const navigate = useNavigate();
 
   function handleSubmit(event) {
     event.preventDefault();
-    if (nome.validation() && card.validation() && cabine.validation()) {
+    if (nome.validation() && card.validation() && select && checkbox) {
       setName(nome.value);
       setCard(card.value);
-      setUnit(unit);
+      setCabin(select);
+      setUnit(checkbox);
       setLogin(true);
       navigate('/home');
     } else {
@@ -42,7 +47,10 @@ const SetCradations = () => {
           name='cartao'
           {...card}
         />
-        <InputForm label='Cabine de pintura' type='number' name='cabine' />
+        <FormSelect select={select} setSelect={setSelect} />
+
+        <FormCheckBox checkbox={checkbox} setCheckBox={setCheckBox} />
+
         <Button>entrar</Button>
       </Form>
     </Container>

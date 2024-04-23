@@ -9,6 +9,9 @@ export const GlobalForm = ({ children }) => {
   const [cabin, setCabin] = React.useState('');
   const [unit, setUnit] = React.useState('');
   const [login, setLogin] = React.useState(false);
+  const [client, setClient] = React.useState('');
+  const [forn, setForn] = React.useState('');
+  const [typeInk, setTypeInk] = React.useState('');
   const [potlifeTest, setPotlifeTest] = React.useState(0);
   const [hours, setHours] = React.useState(0);
   const [minutes, setMinutes] = React.useState(0);
@@ -23,6 +26,16 @@ export const GlobalForm = ({ children }) => {
         setName,
         card,
         setCard,
+        cabin,
+        setCabin,
+        unit,
+        setUnit,
+        client,
+        setClient,
+        forn,
+        setForn,
+        typeInk,
+        setTypeInk,
         login,
         setLogin,
         potlifeTest,

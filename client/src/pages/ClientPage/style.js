@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 export const Container = styled.main`
   display: flex;
@@ -66,7 +66,7 @@ export const ButtonClient = styled(Link)`
   padding: 45px 55px;
 
   color: #f1f1f1;
-  background-color: ${(props) => props.color || "#7f8c8d"};
+  background-color: ${(props) => props.color || '#7f8c8d'};
 
   border-radius: 2px;
   cursor: pointer;
@@ -74,7 +74,7 @@ export const ButtonClient = styled(Link)`
   transition: 0.3s;
 
   &:hover {
-    box-shadow: 2px 2px 20px ${(props) => props.color || "#7f8c8d"};
+    box-shadow: 2px 2px 20px ${(props) => props.color || '#7f8c8d'};
   }
   @media screen and (max-width: 500px) {
     padding: 40px 0px;

@@ -27,8 +27,10 @@ export const Button = styled.button`
 
 export const DropMenu = styled.div`
   width: 40%;
-
+  max-height: 270px;
   display: flex;
+  overflow-y: auto;
+
   flex-direction: column;
 
   background-color: white;

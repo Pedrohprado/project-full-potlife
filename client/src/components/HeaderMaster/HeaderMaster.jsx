@@ -7,7 +7,8 @@ import { Button, DropMenu, Header, Optins, TitleList } from './style';
 import { useNavigate } from 'react-router-dom';
 
 const HeaderMaster = () => {
-  const { name, card, login, setLogin } = React.useContext(GlobalContext);
+  const { name, card, cabin, unit, login, setLogin } =
+    React.useContext(GlobalContext);
   const [value, setValue] = React.useState(false);
   const navigate = useNavigate();
 
@@ -41,6 +42,12 @@ const HeaderMaster = () => {
           </Optins>
           <Optins>
             {card && <div>{card}</div>} <FaRegAddressCard size={20} />
+          </Optins>
+          <Optins onClick={setLogount}>
+            {cabin} <MdExitToApp size={20} />
+          </Optins>
+          <Optins onClick={setLogount}>
+            {unit} <MdExitToApp size={20} />
           </Optins>
           <Optins onClick={goHome}>
             home <IoHomeSharp size={20} />
