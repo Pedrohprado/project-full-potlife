@@ -6,6 +6,8 @@ export const GlobalContext = React.createContext();
 export const GlobalForm = ({ children }) => {
   const [name, setName] = React.useState('');
   const [card, setCard] = React.useState('');
+  const [cabin, setCabin] = React.useState('');
+  const [unit, setUnit] = React.useState('');
   const [login, setLogin] = React.useState(false);
   const [potlifeTest, setPotlifeTest] = React.useState(0);
   const [hours, setHours] = React.useState(0);
