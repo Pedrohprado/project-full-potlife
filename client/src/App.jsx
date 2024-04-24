@@ -13,7 +13,7 @@ import SetCradations from './pages/SetCradations';
 import CronInk from './pages/CronInk';
 import Grafics from './pages/Charts/Charts';
 import HeaderMaster from './components/HeaderMaster/HeaderMaster';
-import Footer from './components/Footer/Footer';
+import PaintPreparation from './components/paintpreparation/paintpreparation';
 
 function App() {
   return (
@@ -24,16 +24,15 @@ function App() {
           <Routes>
             <Route path='/' element={<SetCradations />} />
             <Route path='/home' element={<HomePage />} />
-
             <Route path='pontodeorvalho' element={<ControlOrv />} />
             <Route path='clients' element={<ClientPage />} />
             <Route path='clients/:id' element={<SelectForn />} />
             <Route path='clients/:id/:for' element={<SelectTypeInk />} />
             <Route path='clients/:id/:for/:type' element={<ClientInks />} />
+            <Route path='preparacao' element={<PaintPreparation />} />
             <Route path='cron' element={<CronInk />} />
             <Route path='graficos' element={<Grafics />} />
           </Routes>
-          <Footer />
           <Normalize />
         </GlobalForm>
       </BrowserRouter>

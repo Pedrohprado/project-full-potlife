@@ -12,6 +12,7 @@ import {
 } from './style';
 
 import ConfirmCatalizador from '../ConfirmCatalizador';
+import { GlobalContext } from '../../context/context-form';
 
 export default function ButtonToCatali({
   ink,
@@ -23,6 +24,7 @@ export default function ButtonToCatali({
 }) {
   const [value, setValue] = React.useState(false);
   const [pot, setPot] = React.useState('');
+  const { setInk, setCodeInk, setPotlife } = React.useContext(GlobalContext);
 
   React.useEffect(() => {
     if (potlife === 180) {
@@ -38,6 +40,9 @@ export default function ButtonToCatali({
   function handleClick() {
     setValue(!value);
     returnTop();
+    setInk(ink);
+    setCodeInk(code);
+    setPotlife(potlife);
   }
 
   function returnTop() {

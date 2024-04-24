@@ -12,9 +12,9 @@ import {
   Input,
   ContainerButtons,
   Button,
+  Label,
 } from './style';
 import { useNavigate } from 'react-router-dom';
-import { CONFIRM_CATALIZADOR } from '../../api';
 
 const ConfirmCatalizador = ({
   ink,
@@ -24,11 +24,18 @@ const ConfirmCatalizador = ({
   onClick,
   setValue,
 }) => {
-  const [verific, setVerific] = React.useState('');
   const inputFocus = React.useRef();
 
-  const { setPotlifeTest, setHours, setMinutes, setSeconds } =
-    React.useContext(GlobalContext);
+  const {
+    batch,
+    setBatch,
+    catalyst,
+    setCatalyst,
+    setPotlifeTest,
+    setHours,
+    setMinutes,
+    setSeconds,
+  } = React.useContext(GlobalContext);
 
   const navigate = useNavigate();
 
@@ -36,27 +43,10 @@ const ConfirmCatalizador = ({
     inputFocus.current.focus();
   }, []);
 
-  async function onChange() {
-    const data = {
-      potlife: potlife,
-    };
-
-    console.log(verific);
-    console.log(catalizador);
-
-    if (verific == catalizador) {
-      try {
-        const { url, options } = CONFIRM_CATALIZADOR(data);
-        const response = await fetch(url, options);
-        window.alert('código enviado!');
-        console.log(response);
-        setPotlifeTest(potlife);
-        navigate('/cron');
-      } catch (error) {
-        console.error(error);
-        window.alert(`Erro ao enviar: ${error}`);
-      }
-
+  function onChange() {
+    if (catalyst == catalizador) {
+      window.alert('código enviado!');
+      setPotlifeTest(potlife);
       switch (potlife) {
         case 90:
           setHours(1);
@@ -84,34 +74,48 @@ const ConfirmCatalizador = ({
           setSeconds(0);
           break;
       }
-
+      navigate('/preparacao');
       setValue(false);
     } else {
       window.alert('catalizador incorreto: erro na mistura');
-      setVerific('');
+      setCatalyst('');
       inputFocus.current.focus();
     }
   }
+
   return (
-    <Container key={ink}>
+    <Container>
       <Squad>
-        <Title>confirme o catalizador</Title>
+        <Title>confirme as informações</Title>
 
         <ContainerInfo>
           <Ink>{ink}</Ink>
           <Color color={color}></Color>
         </ContainerInfo>
 
-        <Input
-          ref={inputFocus}
-          type='text'
-          value={verific.toLocaleUpperCase()}
-          onChange={(e) => setVerific(e.target.value.toUpperCase())}
-        />
+        <Label>
+          lote da tinta
+          <Input
+            ref={inputFocus}
+            type='text'
+            value={batch.toLocaleUpperCase()}
+            onChange={({ target }) => setBatch(target.value.toUpperCase())}
+          />
+        </Label>
+
+        <Label>
+          catalizador
+          <Input
+            type='text'
+            value={catalyst.toLocaleUpperCase()}
+            onChange={({ target }) => setCatalyst(target.value.toUpperCase())}
+          />
+        </Label>
+
         <ContainerButtons>
-          <Button onClick={onClick}>VOLTAR</Button>
-          <Button color='green' onClick={onChange}>
-            ENVIAR
+          <Button onClick={onClick}>voltar</Button>
+          <Button color='gray' onClick={onChange}>
+            proximo
           </Button>
         </ContainerButtons>
       </Squad>

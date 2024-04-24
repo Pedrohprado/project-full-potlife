@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Container = styled.main`
   width: 100%;
@@ -18,8 +18,8 @@ export const Container = styled.main`
 `;
 
 export const Squad = styled.div`
-  width: 50%;
-  height: 70%;
+  width: 70%;
+  padding: 20px 0px;
 
   background-color: white;
   border-radius: 7px;
@@ -34,10 +34,11 @@ export const Squad = styled.div`
   }
 `;
 
-export const Title = styled.h1`
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 50px;
+export const Title = styled.h3`
+  font-size: 22px;
+  font-weight: 400;
+
+  margin-bottom: 30px;
 `;
 
 export const ContainerInfo = styled.div`
@@ -45,7 +46,7 @@ export const ContainerInfo = styled.div`
   justify-content: center;
   gap: 2.6rem;
   align-items: center;
-  width: 80%;
+  width: 90%;
 
   margin-bottom: 20px;
   @media screen and (max-width: 500px) {
@@ -53,8 +54,8 @@ export const ContainerInfo = styled.div`
   }
 `;
 
-export const Ink = styled.h2`
-  font-size: 20px;
+export const Ink = styled.h3`
+  font-size: 18px;
   font-weight: bold;
   @media screen and (max-width: 500px) {
     text-align: center;
@@ -64,6 +65,7 @@ export const Ink = styled.h2`
 export const Color = styled.div`
   width: 30px;
   height: 30px;
+  border-radius: 2px;
   background-color: ${(props) => props.color};
 
   @media screen and (max-width: 500px) {
@@ -72,8 +74,19 @@ export const Color = styled.div`
   }
 `;
 
+export const Label = styled.label`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 80%;
+
+  margin-bottom: 10px;
+`;
+
 export const Input = styled.input`
-  padding: 5px 20px;
+  width: 90%;
+  padding: 5px;
   outline: none;
 `;
 export const ContainerButtons = styled.div`
@@ -88,13 +101,13 @@ export const ContainerButtons = styled.div`
 export const Button = styled.button`
   padding: 10px 20px;
   border: none;
-  border-radius: 7px;
+  border-radius: 4px;
   color: white;
-  font-weight: bold;
-  background-color: ${(props) => (props.color ? props.color : "gray")};
+  font-weight: 400;
+  background-color: ${(props) => (props.color ? props.color : 'gray')};
   transition: 0.5;
 
   &:hover {
-    box-shadow: 1px 1px 20px ${(props) => (props.color ? props.color : "gray")};
+    box-shadow: 1px 1px 20px ${(props) => (props.color ? props.color : 'gray')};
   }
 `;
