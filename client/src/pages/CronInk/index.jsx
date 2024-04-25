@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { GlobalContext } from '../../context/context-form';
 import {
   Container,
@@ -12,63 +12,67 @@ import {
   ButtonInfo,
   ContainerAlert,
   TitleAlert,
-  ContainerForm,
-  SelectForm,
-  OptionForm,
-  NavHome,
 } from './style';
+import { useNavigate } from 'react-router-dom';
 
 const CronInk = () => {
   const [transform, setTransform] = React.useState(null);
-
   const [stopcron, setStopcron] = React.useState(true);
-
   const [quest, setQuest] = React.useState(false);
-  const [createForm, setCreateForm] = React.useState(false);
-  const [toHome, setToHome] = React.useState(false);
-  const [select, setSelect] = React.useState('');
-  const [value, setValue] = useState(
-    JSON.parse(localStorage.getItem('time')) || []
-  );
 
-  const refEstado = React.useRef('');
+  const [hours, setHours] = React.useState(0);
+  const [minutes, setMinutes] = React.useState(0);
+  const [seconds, setSeconds] = React.useState(0);
 
-  const {
-    potlifeTest,
-    name,
-    card,
-    hours,
-    minutes,
-    seconds,
-    setHours,
-    setMinutes,
-    setSeconds,
-    localTime,
-    setLocalTime,
-    data,
-    setData,
-  } = React.useContext(GlobalContext);
+  const [obj, setObj] = React.useState({
+    inicio: '',
+    finalizado: '',
+    segundosiniciado: '',
+    segundoparado: '',
+    trabalhado: '',
+  });
+
+  const { setTimer } = React.useContext(GlobalContext);
+
+  const navigate = useNavigate();
+
+  const { potlife } = React.useContext(GlobalContext);
 
   //Definindo o valor do pot-life, para exibição
   React.useEffect(() => {
-    switch (potlifeTest) {
+    switch (potlife) {
       case 90:
         setTransform('01:30');
+        setHours(1);
+        setMinutes(30);
+        setSeconds(0);
         break;
       case 120:
         setTransform('02:00');
+        setHours(2);
+        setMinutes(0);
+        setSeconds(0);
         break;
       case 180:
         setTransform('03:00');
+        setHours(3);
+        setMinutes(0);
+        setSeconds(0);
         break;
       case 240:
         setTransform('04:00');
+        setHours(4);
+        setMinutes(0);
+        setSeconds(0);
         break;
       default:
+        setHours(0);
+        setMinutes(0);
+        setSeconds(0);
         setTransform(null);
         break;
     }
-  }, [potlifeTest]);
+  }, [potlife]);
 
   //Fazendo o cronometro funcionar
   React.useEffect(() => {
@@ -93,108 +97,68 @@ const CronInk = () => {
     }
   }, [hours, minutes, seconds, setHours, setMinutes, setSeconds, stopcron]);
 
-  //Pegando o valor do array definido, entrando no ultimo obj desse array e mudando o valor da "situacao" para o valor selecionado
-  React.useEffect(() => {
-    const info = refEstado.current;
-    const lastObject = info[info.length - 1];
-    console.log(lastObject);
-    if (lastObject) {
-      if (lastObject.hora === 0 && lastObject !== null) {
-        lastObject.hora;
-      } else {
-        lastObject.hora = lastObject.hora * 60;
-      }
-      const modifyObj = {
-        cartao: lastObject.cartao,
-        funcionario: lastObject.funcionario,
-        potlife: lastObject.potlife,
-        rest: lastObject.hora + lastObject.minuto,
-        situacao: '',
-      };
-
-      const thisObj = {
-        ...modifyObj,
-        trabalhado: modifyObj.potlife - modifyObj.rest,
-      };
-      const newObject = { ...thisObj, situacao: select };
-
-      if (info.length > 0) {
-        setData([...info.slice(0, -1), newObject]);
-      }
-    } else {
-      console.log('falso');
-    }
-  }, [select, setData]);
-
-  React.useEffect(() => {
-    localStorage.setItem('time', JSON.stringify(value));
-  }, [value]);
-
   function handleClick() {
     setStopcron(false);
     setQuest(true);
 
-    setLocalTime([
-      ...localTime,
-      {
-        funcionario: name,
-        cartao: card,
-        hora: hours,
-        minuto: minutes,
-        segundo: seconds,
-        potlife: potlifeTest,
-        situacao: '',
-      },
-    ]);
+    const hours = new Date().getHours() * 60;
+    const minutes = new Date().getMinutes();
+    const seconds = new Date().getSeconds();
+    const result = (hours + minutes) * 60 + seconds;
+
+    setObj((objOld) => ({
+      ...objOld,
+      finalizado: new Date().toLocaleTimeString(),
+      segundoparado: result,
+    }));
   }
 
-  function SendLocal() {
-    setCreateForm(true);
+  function returnCron() {
     setQuest(false);
-    refEstado.current = localTime;
-  }
-
-  function returnCron(event) {
-    event.preventDefault();
-
-    const newArray = [...localTime];
-    newArray.pop();
-    setLocalTime(newArray);
-
     setStopcron(true);
-    setQuest(false);
-    setCreateForm(false);
+
+    setObj((objOld) => ({
+      ...objOld,
+      finalizado: '',
+      segundoparado: '',
+    }));
   }
 
-  //NOTAS: nessa function, ela pega o valor que existe dentro o localStorage, caso ja exista um valor, ele concatena com o novo definido
-  //caso não, ele define o data como primeiro valor
-  function sendForm(event) {
-    event.preventDefault();
+  React.useEffect(() => {
+    const dif = (obj.segundoparado - obj.segundosiniciado) / 60;
+    setObj((oldObj) => ({
+      ...oldObj,
+      trabalhado: dif.toFixed(2),
+    }));
+  }, [obj.segundoparado, obj.segundosiniciado]);
 
-    setValue((prevValue) => {
-      if (Array.isArray(prevValue)) {
-        return [...prevValue, ...data];
-      } else {
-        return [data];
-      }
-    });
-    setLocalTime('');
+  React.useEffect(() => {
+    const hours = new Date().getHours() * 60;
+    const minutes = new Date().getMinutes();
+    const seconds = new Date().getSeconds();
+    const result = (hours + minutes) * 60 + seconds;
 
-    if (data[0].situacao === 'finalizado') {
-      setToHome(true);
-    } else {
-      setStopcron(true);
-      setQuest(false);
-      setCreateForm(false);
-    }
-  }
+    setObj((objOld) => ({
+      ...objOld,
+      inicio: new Date().toLocaleTimeString(),
+      segundosiniciado: result,
+    }));
+  }, []);
 
-  function changeOption({ target }) {
-    setSelect(target.value);
+  function handleSend() {
+    setTimer((oldTimer) => ({
+      ...oldTimer,
+      inicio: obj.inicio,
+      finalizado: obj.finalizado,
+      trabalhado: obj.trabalhado,
+    }));
+
+    navigate('/envio');
   }
 
   return (
     <Container>
+      {obj.trabalhado}
       <Title>Cronômetro</Title>
       <ContainerCron>
         {hours}:{minutes < 10 ? '0' : null}
@@ -205,49 +169,14 @@ const CronInk = () => {
       <Navgation>
         <Button onClick={handleClick}>PARAR CRONÔMETRO</Button>
       </Navgation>
-
       {!quest ? null : (
         <ContainerInfo>
           <ContainerAlert>
-            <TitleAlert>deseja interromper o cronômetro?</TitleAlert>
+            <TitleAlert>processo finalizado?</TitleAlert>
             <ContainerInfoButton>
-              <ButtonInfo onClick={SendLocal}>Sim</ButtonInfo>
-              <ButtonInfo
-                color='#303030'
-                colorText='white'
-                onClick={returnCron}
-              >
-                Não
-              </ButtonInfo>
+              <ButtonInfo onClick={handleSend}>Sim</ButtonInfo>
+              <ButtonInfo onClick={returnCron}>Não</ButtonInfo>
             </ContainerInfoButton>
-          </ContainerAlert>
-        </ContainerInfo>
-      )}
-      {!createForm ? null : (
-        <ContainerInfo>
-          <ContainerAlert>
-            <TitleAlert>Qual o motivo da parada?</TitleAlert>
-            <ContainerForm onSubmit={sendForm}>
-              <SelectForm value={select} onChange={changeOption}>
-                <OptionForm value=''></OptionForm>
-                <OptionForm value='finalizado'>Finalizado</OptionForm>
-                <OptionForm value='almoco'>Almoço</OptionForm>
-                <OptionForm value='quebra'>Quebra</OptionForm>
-                <OptionForm value='emergencia'>Emergência</OptionForm>
-              </SelectForm>
-              <ContainerInfoButton>
-                {toHome ? (
-                  <NavHome to='/home'>finalizar</NavHome>
-                ) : (
-                  <>
-                    <ButtonInfo onClick={returnCron}>cancelar</ButtonInfo>
-                    <ButtonInfo color='#303030' colorText='white'>
-                      parar
-                    </ButtonInfo>
-                  </>
-                )}
-              </ContainerInfoButton>
-            </ContainerForm>
           </ContainerAlert>
         </ContainerInfo>
       )}

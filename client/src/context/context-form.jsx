@@ -17,23 +17,24 @@ export const GlobalForm = ({ children }) => {
   const [potlife, setPotlife] = React.useState('');
   const [batch, setBatch] = React.useState('');
   const [catalyst, setCatalyst] = React.useState('');
-  const [potlifeTest, setPotlifeTest] = React.useState(0);
-  const [hours, setHours] = React.useState(0);
-  const [minutes, setMinutes] = React.useState(0);
-  const [seconds, setSeconds] = React.useState(0);
-  const [localTime, setLocalTime] = React.useState([]);
-  const [data, setData] = React.useState('');
   const [umity, setUmity] = React.useState('');
   const [temperature, setTemperature] = React.useState('');
-  const [orval, setOrval] = React.useState('');
+  const [orval, setOrval] = React.useState('0');
   const [press, setPress] = React.useState('');
   const [filter, setFilter] = React.useState('');
   const [visc, setVisc] = React.useState('');
   const [flowRate, setFlowRate] = React.useState('');
+  const [timer, setTimer] = React.useState({
+    inicio: '',
+    finalizado: '',
+    trabalhado: '',
+  });
 
   return (
     <GlobalContext.Provider
       value={{
+        timer,
+        setTimer,
         press,
         setPress,
         filter,
@@ -74,18 +75,6 @@ export const GlobalForm = ({ children }) => {
         setCatalyst,
         login,
         setLogin,
-        potlifeTest,
-        setPotlifeTest,
-        hours,
-        setHours,
-        minutes,
-        setMinutes,
-        seconds,
-        setSeconds,
-        localTime,
-        setLocalTime,
-        data,
-        setData,
       }}
     >
       {children}

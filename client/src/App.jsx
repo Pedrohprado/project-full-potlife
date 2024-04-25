@@ -14,6 +14,7 @@ import CronInk from './pages/CronInk';
 import Grafics from './pages/Charts/Charts';
 import HeaderMaster from './components/HeaderMaster/HeaderMaster';
 import PaintPreparation from './components/paintpreparation/paintpreparation';
+import DatasForSend from './pages/datasforsend/datasforsend';
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
             <Route path='preparacao' element={<PaintPreparation />} />
             <Route path='cron' element={<CronInk />} />
             <Route path='graficos' element={<Grafics />} />
+            <Route path='envio' element={<DatasForSend />} />
           </Routes>
           <Normalize />
         </GlobalForm>
