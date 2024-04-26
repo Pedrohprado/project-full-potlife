@@ -42,7 +42,7 @@ export default function ButtonToCatali({
     returnTop();
     setInk(ink);
     setCodeInk(code);
-    setPotlife(potlife);
+    setPotlife(potlife.toString());
   }
 
   function returnTop() {

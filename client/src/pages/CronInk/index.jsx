@@ -41,25 +41,25 @@ const CronInk = () => {
   //Definindo o valor do pot-life, para exibição
   React.useEffect(() => {
     switch (potlife) {
-      case 90:
+      case '90':
         setTransform('01:30');
         setHours(1);
         setMinutes(30);
         setSeconds(0);
         break;
-      case 120:
+      case '120':
         setTransform('02:00');
         setHours(2);
         setMinutes(0);
         setSeconds(0);
         break;
-      case 180:
+      case '180':
         setTransform('03:00');
         setHours(3);
         setMinutes(0);
         setSeconds(0);
         break;
-      case 240:
+      case '240':
         setTransform('04:00');
         setHours(4);
         setMinutes(0);

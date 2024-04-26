@@ -5,9 +5,7 @@ export default function HomePage() {
     <Container>
       <Text>Monitoramento Pintura Líquida</Text>
       <ContainerButtons>
-        <Button to={'/pontodeorvalho'}>Ponto de orvalho</Button>
         <Button to={'/clients'}>Controle</Button>
-        <Button to={'/graficos'}>Gráficos</Button>
       </ContainerButtons>
     </Container>
   );

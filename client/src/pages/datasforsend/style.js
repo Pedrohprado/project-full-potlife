@@ -9,17 +9,22 @@ export const Container = styled.main`
   justify-content: center;
 `;
 
+export const Title = styled.h1`
+  font-weight: 400;
+  font-size: 16px;
+`;
+
 export const GridContainer = styled.section`
   display: grid;
   grid-template-columns: 1fr;
-  grid-gap: 50px;
+  grid-gap: 30px;
 `;
 
 export const Table = styled.table`
-  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 90vw;
 `;
 
 export const Thead = styled.thead`
@@ -35,26 +40,30 @@ export const Tr = styled.tr`
   display: flex;
   align-items: center;
   justify-content: space-around;
+  gap: 5px;
 `;
 
 export const Th = styled.th`
-  padding: 2px 5px;
   font-size: 12px;
+  padding: 5px 10px;
   text-align: center;
-  width: 20%;
-  border: 1px solid black;
+  font-weight: 400;
+  width: 40%;
+  background-color: #101010;
+  color: white;
+  border-radius: 4px 4px 0px 0px;
 `;
 
 export const Td = styled.td`
-  width: 20%;
-  border: 1px solid black;
-  padding: 2px 5px;
+  border-radius: 0px 0px 4px 4px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 50px;
   font-size: 14px;
   text-align: center;
-`;
-
-export const Trb = styled.tr`
-  display: flex;
-
-  border-bottom: 1px solid #dddddd;
+  padding: 10px;
+  border: 0.5px solid;
 `;

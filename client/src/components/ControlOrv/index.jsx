@@ -74,11 +74,11 @@ const ControlOrv = () => {
   React.useEffect(() => {
     let Tpo = (hum / 100) ** 0.125 * (112 + 0.9 * temp) + 0.1 * temp - 112;
 
-    setOrv(parseFloat(Tpo.toFixed(2)));
+    setOrv(parseFloat(Tpo.toFixed(2)).toString());
   }, [hum, temp]);
 
   React.useEffect(() => {
-    const tempink = orv + 3;
+    const tempink = +orv + 3;
     setTempInk(parseFloat(tempink.toFixed(2)));
   }, [orv]);
 

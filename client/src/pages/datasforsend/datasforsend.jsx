@@ -9,31 +9,50 @@ import {
   Td,
   Th,
   Thead,
+  Title,
   Tr,
 } from './style';
+import { useNavigate } from 'react-router-dom';
 
 const DatasForSend = () => {
+  const navigate = useNavigate();
   const {
     name,
     card,
     cabin,
     unit,
     client,
+    setClient,
     forn,
+    setForn,
     typeInk,
+    setTypeInk,
     ink,
+    setInk,
     codeInk,
+    setCodeInk,
     potlife,
+    setPotlife,
     batch,
+    setBatch,
     catalyst,
-    umity,
-    temperature,
-    orval,
-    press,
-    filter,
-    visc,
-    flowRate,
+    setCatalyst,
     timer,
+    setTimer,
+    press,
+    setPress,
+    filter,
+    setFilter,
+    visc,
+    setVisc,
+    flowRate,
+    setFlowRate,
+    umity,
+    setUmity,
+    temperature,
+    setTemperature,
+    orval,
+    setOrval,
   } = React.useContext(GlobalContext);
 
   async function sendInformations() {
@@ -59,15 +78,39 @@ const DatasForSend = () => {
       flowRate,
       timer,
     };
+
     try {
       const { url, options } = POST_DATAS(body);
-      await fetch(url, options);
+      const response = await fetch(url, options);
+
+      console.log(response.status);
+      if (response.status === 210) {
+        setClient('');
+        setForn('');
+        setTypeInk('');
+        setInk('');
+        setCodeInk('');
+        setPotlife('');
+        setBatch('');
+        setCatalyst('');
+        setTimer('');
+        setPress('');
+        setFilter('');
+        setVisc('');
+        setFlowRate('');
+        setUmity('');
+        setTemperature('');
+        setOrval('');
+        navigate('/home');
+      }
     } catch (error) {
       console.error(error);
     }
   }
+
   return (
     <Container>
+      <Title>revisão do processo</Title>
       <GridContainer>
         <Table>
           <Thead>
