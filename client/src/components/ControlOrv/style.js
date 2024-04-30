@@ -92,6 +92,21 @@ export const Loading = styled.div`
   justify-content: center;
 `;
 
+export const Button = styled.button`
+  padding: 10px 15px;
+  background-color: #101010;
+  color: white;
+  font-size: 16px;
+  font-weight: 500;
+  border: none;
+  border-radius: 4px;
+  transition: 0.3s;
+
+  &:hover {
+    background-color: #2b2b2b;
+  }
+`;
+
 export const Loader = styled.div`
   border: 5px solid #f3f3f3;
   border-top: 5px solid #225dfe;

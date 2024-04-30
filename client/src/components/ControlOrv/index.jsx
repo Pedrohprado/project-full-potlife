@@ -9,6 +9,7 @@ import {
   MicroTitle,
   ControlContainer,
   ContainerPaintPrep,
+  Button,
 } from './style';
 
 import {
@@ -23,8 +24,10 @@ import { GET_CONDIT_ORV } from '../../api';
 import { GlobalContext } from '../../context/context-form';
 import { useNavigate } from 'react-router-dom';
 import InputForm from '../InputForm/InputForm';
+import ErrorFLag from '../errorflag/ErrorFLag';
 
 const ControlOrv = () => {
+  const [error, setError] = React.useState('');
   const [temp, setTemp] = React.useState(null);
   const [hum, setHum] = React.useState(null);
   const [orv, setOrv] = React.useState(null);
@@ -86,11 +89,16 @@ const ControlOrv = () => {
     setUmity(hum);
     setTemperature(temp);
     setOrval(orv);
-    if (press && filter && visc && flowRate) navigate('/cron');
+    if (hum && temp && orv && press && filter && visc && flowRate) {
+      navigate('/cron');
+    } else {
+      setError('Preencha todas as informações');
+    }
   }
 
   return (
     <ContainerInfo>
+      {error ? <ErrorFLag error={error} setError={setError} /> : null}
       <ContainerPaintPrep>
         <TempeHum>
           {temp > 23 ? (
@@ -133,24 +141,28 @@ const ControlOrv = () => {
       <InputForm
         label={'pressão do tambor'}
         name={'press'}
+        type='number'
         onChange={({ target }) => setPress(target.value)}
       />
       <InputForm
         label={'pressão do filtro'}
         name={'filter'}
+        type='number'
         onChange={({ target }) => setFilter(target.value)}
       />
       <InputForm
         label={'Viscosidade da tinta'}
         name={'visc'}
+        type='number'
         onChange={({ target }) => setVisc(target.value)}
       />
       <InputForm
         label={'Vazão da tinta'}
         name={'flowRate'}
+        type='number'
         onChange={({ target }) => setFlowRate(target.value)}
       />
-      <button onClick={handleClick}>iniciar cronomêtro</button>
+      <Button onClick={handleClick}>iniciar cronomêtro</Button>
     </ContainerInfo>
   );
 };

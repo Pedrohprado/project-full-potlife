@@ -158,7 +158,6 @@ const CronInk = () => {
 
   return (
     <Container>
-      {obj.trabalhado}
       <Title>Cronômetro</Title>
       <ContainerCron>
         {hours}:{minutes < 10 ? '0' : null}

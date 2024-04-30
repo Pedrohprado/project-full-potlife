@@ -2,6 +2,7 @@ import React from 'react';
 import { GlobalContext } from '../../context/context-form';
 import { POST_DATAS } from '../../api';
 import {
+  Button,
   Container,
   GridContainer,
   Table,
@@ -13,9 +14,12 @@ import {
   Tr,
 } from './style';
 import { useNavigate } from 'react-router-dom';
+import ErrorFLag from '../../components/errorflag/ErrorFLag';
 
 const DatasForSend = () => {
+  const [art, setArt] = React.useState('');
   const navigate = useNavigate();
+
   const {
     name,
     card,
@@ -82,9 +86,23 @@ const DatasForSend = () => {
     try {
       const { url, options } = POST_DATAS(body);
       const response = await fetch(url, options);
+      const data = await response.json();
 
-      console.log(response.status);
-      if (response.status === 210) {
+      console.log(response);
+      console.log(data);
+
+      if (response.status === 201) {
+        setArt(data.respost);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  React.useEffect(() => {
+    if (art) {
+      const timeOut = setTimeout(() => {
+        setArt('');
         setClient('');
         setForn('');
         setTypeInk('');
@@ -92,7 +110,7 @@ const DatasForSend = () => {
         setCodeInk('');
         setPotlife('');
         setBatch('');
-        setCatalyst('');
+        setCatalyst(' ');
         setTimer('');
         setPress('');
         setFilter('');
@@ -102,14 +120,34 @@ const DatasForSend = () => {
         setTemperature('');
         setOrval('');
         navigate('/home');
-      }
-    } catch (error) {
-      console.error(error);
+      }, 5000);
+
+      return () => clearTimeout(timeOut);
     }
-  }
+  }, [
+    art,
+    navigate,
+    setBatch,
+    setCatalyst,
+    setClient,
+    setCodeInk,
+    setFilter,
+    setFlowRate,
+    setForn,
+    setInk,
+    setOrval,
+    setPotlife,
+    setPress,
+    setTemperature,
+    setTimer,
+    setTypeInk,
+    setUmity,
+    setVisc,
+  ]);
 
   return (
     <Container>
+      {art ? <ErrorFLag art={art} /> : null}
       <Title>revisão do processo</Title>
       <GridContainer>
         <Table>
@@ -140,7 +178,7 @@ const DatasForSend = () => {
               <Th>fornecedor</Th>
               <Th>tipo de tinta</Th>
               <Th>tinta</Th>
-              <Th>codigo</Th>
+              <Th>código</Th>
               <Th>potlife</Th>
               <Th>lote</Th>
               <Th>catalizador</Th>
@@ -151,9 +189,9 @@ const DatasForSend = () => {
             <Tr>
               <Td>{forn}</Td>
               <Td>{typeInk}</Td>
-              <Td>{ink}</Td>
+              <Td style={{ fontSize: '10px' }}>{ink}</Td>
               <Td>{codeInk}</Td>
-              <Td>{potlife}</Td>
+              <Td>{potlife} min</Td>
               <Td>{batch}</Td>
               <Td>{catalyst}</Td>
             </Tr>
@@ -165,23 +203,23 @@ const DatasForSend = () => {
             <Tr>
               <Th>temperatura</Th>
               <Th>umidade</Th>
-              <Th>ponto de orvalho</Th>
-              <Th>pressão do tambor</Th>
-              <Th>pressão do filtro</Th>
+              <Th>p. orvalho</Th>
+              <Th>pr. tambor</Th>
+              <Th>pr. filtro</Th>
               <Th>viscosidade</Th>
-              <Th>vazão de tinta</Th>
+              <Th>vaz. de tinta</Th>
             </Tr>
           </Thead>
 
           <Tbody>
             <Tr>
-              <Td>{temperature}</Td>
-              <Td>{umity}</Td>
-              <Td>{orval}</Td>
-              <Td>{press}</Td>
-              <Td>{filter}</Td>
-              <Td>{visc}</Td>
-              <Td>{flowRate}</Td>
+              <Td>{temperature} ºC</Td>
+              <Td>{umity} %</Td>
+              <Td>{orval} ºC</Td>
+              <Td>{press} psi</Td>
+              <Td>{filter} psi</Td>
+              <Td>{visc} seg</Td>
+              <Td>{flowRate} ml</Td>
             </Tr>
           </Tbody>
         </Table>
@@ -199,13 +237,12 @@ const DatasForSend = () => {
             <Tr>
               <Td>{timer.inicio}</Td>
               <Td>{timer.finalizado}</Td>
-              <Td>{timer.trabalhado}</Td>
+              <Td>{timer.trabalhado} min</Td>
             </Tr>
           </Tbody>
         </Table>
       </GridContainer>
-
-      <button onClick={sendInformations}>enviar</button>
+      <Button onClick={sendInformations}>enviar</Button>
     </Container>
   );
 };

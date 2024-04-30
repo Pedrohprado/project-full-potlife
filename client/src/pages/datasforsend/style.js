@@ -17,7 +17,7 @@ export const Title = styled.h1`
 export const GridContainer = styled.section`
   display: grid;
   grid-template-columns: 1fr;
-  grid-gap: 30px;
+  grid-gap: 20px;
 `;
 
 export const Table = styled.table`
@@ -66,4 +66,20 @@ export const Td = styled.td`
   text-align: center;
   padding: 10px;
   border: 0.5px solid;
+`;
+
+export const Button = styled.button`
+  margin-top: 25px;
+  padding: 10px 30px;
+  background-color: #101010;
+  color: white;
+  font-size: 16px;
+  font-weight: 500;
+  border: none;
+  border-radius: 4px;
+  transition: 0.3s;
+
+  &:hover {
+    background-color: #2b2b2b;
+  }
 `;
