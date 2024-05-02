@@ -19,7 +19,7 @@ const SetCradations = () => {
   function handleSubmit(event) {
     event.preventDefault();
     if (nome.validation() && card.validation() && select && checkbox) {
-      setName(nome.value);
+      setName(nome.value.toUpperCase());
       setCard(card.value);
       setCabin(select);
       setUnit(checkbox);

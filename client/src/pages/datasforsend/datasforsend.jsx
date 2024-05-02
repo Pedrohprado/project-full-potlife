@@ -110,7 +110,7 @@ const DatasForSend = () => {
         setCodeInk('');
         setPotlife('');
         setBatch('');
-        setCatalyst(' ');
+        setCatalyst('');
         setTimer('');
         setPress('');
         setFilter('');
