@@ -8,7 +8,7 @@ export const GlobalForm = ({ children }) => {
   const [card, setCard] = React.useState('');
   const [cabin, setCabin] = React.useState('');
   const [unit, setUnit] = React.useState('');
-  const [login, setLogin] = React.useState(false);
+  const [login, setLogin] = React.useState(true);
   const [client, setClient] = React.useState('');
   const [forn, setForn] = React.useState('');
   const [typeInk, setTypeInk] = React.useState('');
@@ -29,6 +29,80 @@ export const GlobalForm = ({ children }) => {
     finalizado: '',
     trabalhado: '',
   });
+  const [reset, setReset] = React.useState(false);
+
+  React.useEffect(() => {
+    function resetAll() {
+      setClient('');
+      setForn('');
+      setTypeInk('');
+      setInk('');
+      setCodeInk('');
+      setPotlife('');
+      setBatch('');
+      setCatalyst('');
+      setTimer('');
+      setPress('');
+      setFilter('');
+      setVisc('');
+      setFlowRate('');
+      setUmity('');
+      setTemperature('');
+      setOrval('');
+      setReset(false);
+    }
+
+    if (reset) resetAll();
+  }, [reset]);
+
+  React.useEffect(() => {
+    if (timer.inicio && timer.finalizado && timer.trabalhado)
+      localStorage.setItem('timer', JSON.stringify(timer));
+  }, [timer]);
+
+  React.useEffect(() => {
+    if (umity && temperature && orval && press && filter && visc && flowRate) {
+      localStorage.setItem('umity', umity);
+      localStorage.setItem('temperature', temperature);
+      localStorage.setItem('orval', orval);
+      localStorage.setItem('press', press);
+      localStorage.setItem('filter', filter);
+      localStorage.setItem('visc', visc);
+      localStorage.setItem('flowrate', flowRate);
+    }
+  }, [filter, flowRate, orval, press, temperature, umity, visc]);
+
+  React.useEffect(() => {
+    if (batch && catalyst) {
+      localStorage.setItem('batch', batch);
+      localStorage.setItem('catalyst', catalyst);
+    }
+  }, [batch, catalyst]);
+
+  React.useEffect(() => {
+    if (name && card && cabin && unit) {
+      localStorage.setItem('name', name);
+      localStorage.setItem('card', card);
+      localStorage.setItem('cabin', cabin);
+      localStorage.setItem('unit', unit);
+    }
+  }, [cabin, card, name, unit]);
+
+  React.useEffect(() => {
+    if (client && forn && typeInk) {
+      localStorage.setItem('client', client);
+      localStorage.setItem('forn', forn);
+      localStorage.setItem('typeInk', typeInk);
+    }
+  }, [client, forn, typeInk]);
+
+  React.useEffect(() => {
+    if (ink && codeInk && potlife) {
+      localStorage.setItem('ink', ink);
+      localStorage.setItem('codeInk', codeInk);
+      localStorage.setItem('potlife', potlife);
+    }
+  }, [codeInk, ink, potlife]);
 
   return (
     <GlobalContext.Provider
@@ -75,6 +149,7 @@ export const GlobalForm = ({ children }) => {
         setCatalyst,
         login,
         setLogin,
+        setReset,
       }}
     >
       {children}

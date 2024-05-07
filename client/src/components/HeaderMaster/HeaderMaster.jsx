@@ -7,12 +7,35 @@ import { Button, DropMenu, Header, Optins, TitleList } from './style';
 import { useNavigate } from 'react-router-dom';
 
 const HeaderMaster = () => {
-  const { name, card, cabin, unit, login, setLogin } =
-    React.useContext(GlobalContext);
-  const [value, setValue] = React.useState(false);
+  const [user, setUser] = React.useState({
+    name: '',
+    card: '',
+    cabin: '',
+    unit: '',
+  });
+
+  const { login, setLogin } = React.useContext(GlobalContext);
+
+  const [value, setValue] = React.useState(false); //drop menu
   const navigate = useNavigate();
 
+  React.useEffect(() => {
+    const keys = ['name', 'card', 'cabin', 'unit'];
+    let newState = {};
+
+    for (let key of keys) {
+      newState[key] = localStorage.getItem(key);
+    }
+    setUser(newState);
+  }, []);
+
   function setLogount() {
+    const keys = ['name', 'card', 'cabin', 'unit'];
+
+    for (let key of keys) {
+      localStorage.setItem(key, '');
+    }
+
     setLogin(false);
     setValue(false);
     navigate('/');
@@ -37,17 +60,17 @@ const HeaderMaster = () => {
         <DropMenu>
           <TitleList>Informações</TitleList>
           <Optins>
-            {name && <>{name}</>}
+            {user.name && <>{user.name}</>}
             <FaUser size={19} />
           </Optins>
           <Optins>
-            {card && <div>{card}</div>} <FaRegAddressCard size={20} />
+            {user.card && <div>{user.card}</div>} <FaRegAddressCard size={20} />
           </Optins>
-          <Optins onClick={setLogount}>
-            {cabin} <MdExitToApp size={20} />
+          <Optins>
+            {user.cabin} <MdExitToApp size={20} />
           </Optins>
-          <Optins onClick={setLogount}>
-            {unit} <MdExitToApp size={20} />
+          <Optins>
+            {user.unit} <MdExitToApp size={20} />
           </Optins>
           <Optins onClick={goHome}>
             home <IoHomeSharp size={20} />
