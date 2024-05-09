@@ -17,6 +17,7 @@ import { useNavigate } from 'react-router-dom';
 import ErrorFLag from '../../components/errorflag/ErrorFLag';
 
 const DatasForSend = () => {
+  const [loading, setLoading] = React.useState(false);
   const [art, setArt] = React.useState('');
   const [body, setBody] = React.useState('');
   const [hour, setHour] = React.useState({
@@ -39,6 +40,7 @@ const DatasForSend = () => {
 
     catchTimer();
   }, []);
+
   React.useEffect(() => {
     function catchLocal() {
       const time = localStorage.getItem('timer');
@@ -72,6 +74,7 @@ const DatasForSend = () => {
 
   async function sendInformations() {
     try {
+      setLoading(true);
       const { url, options } = POST_DATAS(body);
       const response = await fetch(url, options);
       const data = await response.json();
@@ -81,6 +84,7 @@ const DatasForSend = () => {
       }
     } catch (error) {
       console.error(error);
+      setLoading(false);
     }
   }
 
@@ -88,6 +92,7 @@ const DatasForSend = () => {
     if (art) {
       const timeOut = setTimeout(() => {
         setArt('');
+        setLoading(false);
         setReset(true);
         navigate('/home');
       }, 5000);
@@ -193,7 +198,14 @@ const DatasForSend = () => {
           </Tbody>
         </Table>
       </GridContainer>
-      <Button onClick={sendInformations}>enviar</Button>
+
+      {loading ? (
+        <Button disabled style={{ cursor: 'wait' }}>
+          enviar
+        </Button>
+      ) : (
+        <Button onClick={sendInformations}>enviar</Button>
+      )}
     </Container>
   );
 };

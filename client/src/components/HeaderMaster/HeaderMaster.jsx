@@ -17,6 +17,7 @@ const HeaderMaster = () => {
   const { login, setLogin } = React.useContext(GlobalContext);
 
   const [value, setValue] = React.useState(false); //drop menu
+
   const navigate = useNavigate();
 
   React.useEffect(() => {
@@ -26,8 +27,9 @@ const HeaderMaster = () => {
     for (let key of keys) {
       newState[key] = localStorage.getItem(key);
     }
-    setUser(newState);
-  }, []);
+
+    if (value) setUser(newState);
+  }, [value]);
 
   function setLogount() {
     const keys = ['name', 'card', 'cabin', 'unit'];
