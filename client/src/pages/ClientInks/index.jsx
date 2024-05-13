@@ -68,6 +68,10 @@ export default function CliientInks() {
           setTest('cnhppgesmalte');
           break;
 
+        case 'cnhppgprimer':
+          setTest('cnhppgprimer');
+          break;
+
         case 'volvosherwinesmalte':
           setTest('volvosherwinesmalte');
           break;
@@ -176,7 +180,6 @@ export default function CliientInks() {
       />
     )
   );
-  console.log(inkJohnDeere[0].ppg[0].primer);
 
   const inkCnhSherEsmalt = inkCnh[0].sherwin[0].esmalte.map(
     ({ ink, code, color, micras, potlife, catalisador }, i) => (
@@ -193,6 +196,20 @@ export default function CliientInks() {
   );
 
   const inkCnhPpgEsmalt = inkCnh[0].ppg[0].esmalte.map(
+    ({ ink, code, color, micras, potlife, catalisador }, i) => (
+      <ButtonToCatali
+        key={i}
+        ink={ink}
+        code={code}
+        color={color}
+        micras={micras}
+        potlife={potlife}
+        catalisador={catalisador}
+      />
+    )
+  );
+
+  const inkCnhPpgPrimer = inkCnh[0].ppg[0].primer.map(
     ({ ink, code, color, micras, potlife, catalisador }, i) => (
       <ButtonToCatali
         key={i}
@@ -345,6 +362,8 @@ export default function CliientInks() {
         <Container>{inkCnhSherEsmalt}</Container>
       ) : test === 'cnhppgesmalte' ? (
         <Container>{inkCnhPpgEsmalt}</Container>
+      ) : test === 'cnhppgprimer' ? (
+        <Container>{inkCnhPpgPrimer}</Container>
       ) : test === 'volvosherwinesmalte' ? (
         <Container>{inkVolvoSherEsmalt}</Container>
       ) : test === 'volvosherwinprimer' ? (
