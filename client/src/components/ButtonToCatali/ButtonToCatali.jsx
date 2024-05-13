@@ -27,14 +27,31 @@ export default function ButtonToCatali({
   const { setInk, setCodeInk, setPotlife } = React.useContext(GlobalContext);
 
   React.useEffect(() => {
-    if (potlife === 180) {
-      setPot('3:00');
+    switch (potlife) {
+      case 240:
+        setPot('4:00');
+        break;
+      case 180:
+        setPot('3:00');
+        break;
+      case 120:
+        setPot('2:00');
+        break;
+      default:
+        setPot('1:30');
+        break;
     }
-    if (potlife === 120) {
-      setPot('2:00');
-    } else {
-      setPot('1:30');
-    }
+    // if (potlife === 240) {
+    //   setPot('4:00');
+    // }
+    // if (potlife === 180) {
+    //   setPot('3:00');
+    // }
+    // if (potlife === 120) {
+    //   setPot('2:00');
+    // } else {
+    //   setPot('1:30');
+    // }
   }, [potlife]);
 
   function handleClick() {
