@@ -294,7 +294,7 @@ export const inkCaterpillar = [
           {
             code: 'LT0002SSA',
             micras: 20,
-            ink: 'PRIMER PU AS 2K CINZA W43181A 18LT',
+            ink: 'PRIMER PU 2K HS CINZA',
             catalisador: 'LT0001SDD',
             fabricante: 'PPG',
             potlife: 180,
