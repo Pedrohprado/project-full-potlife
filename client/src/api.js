@@ -18,6 +18,19 @@ export function POST_DATAS(body) {
   };
 }
 
+export function PUT_STATUS(body) {
+  return {
+    url: 'http://localhost:4041/api/status',
+    options: {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(body),
+    },
+  };
+}
+
 export function GET_CONDIT_ORV() {
   return {
     url: API_URL_ORV,

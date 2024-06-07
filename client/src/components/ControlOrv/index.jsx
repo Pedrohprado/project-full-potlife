@@ -20,7 +20,7 @@ import {
   FaRegSnowflake,
 } from 'react-icons/fa6';
 
-import { GET_CONDIT_ORV } from '../../api';
+import { GET_CONDIT_ORV, PUT_STATUS } from '../../api';
 import { GlobalContext } from '../../context/context-form';
 import { useNavigate } from 'react-router-dom';
 import InputForm from '../InputForm/InputForm';
@@ -35,6 +35,7 @@ const ControlOrv = () => {
   const [loading, setLoading] = React.useState(false);
 
   const {
+    cabin,
     setUmity,
     setTemperature,
     setOrval,
@@ -85,12 +86,25 @@ const ControlOrv = () => {
     setTempInk(parseFloat(tempink.toFixed(2)));
   }, [orv]);
 
-  function handleClick() {
+  async function handleClick() {
     setUmity(hum);
     setTemperature(temp);
     setOrval(orv);
     if (hum && temp && orv && press && filter && visc && flowRate) {
-      navigate('/cron');
+      const body = {
+        status: 'em uso',
+        cabin: cabin,
+        start: new Date(),
+      };
+      try {
+        const { url, options } = PUT_STATUS(body);
+        const response = await fetch(url, options);
+
+        console.log();
+        if (response.ok) navigate('/cron');
+      } catch (error) {
+        console.log(error);
+      }
     } else {
       setError('Preencha todas as informações');
     }

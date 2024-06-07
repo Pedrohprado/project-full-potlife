@@ -14,6 +14,7 @@ import {
   TitleAlert,
 } from './style';
 import { useNavigate } from 'react-router-dom';
+import { PUT_STATUS } from '../../api';
 
 const CronInk = () => {
   const [transform, setTransform] = React.useState(null);
@@ -32,7 +33,7 @@ const CronInk = () => {
     trabalhado: '',
   });
 
-  const { setTimer } = React.useContext(GlobalContext);
+  const { setTimer, cabin } = React.useContext(GlobalContext);
 
   const navigate = useNavigate();
 
@@ -145,7 +146,7 @@ const CronInk = () => {
     }));
   }, []);
 
-  function handleSend() {
+  async function handleSend() {
     setTimer((oldTimer) => ({
       ...oldTimer,
       inicio: obj.inicio,
@@ -153,7 +154,19 @@ const CronInk = () => {
       trabalhado: obj.trabalhado,
     }));
 
-    navigate('/envio');
+    try {
+      const body = {
+        status: 'parado',
+        cabin: cabin,
+        end: new Date(),
+      };
+      const { url, options } = PUT_STATUS(body);
+      const response = await fetch(url, options);
+
+      if (response.ok) navigate('/envio');
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (
